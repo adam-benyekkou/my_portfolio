@@ -19,7 +19,7 @@ jobs:
       # If not, this step usually serves as a placeholder or requires setup
       # For now, we will use the official action which handles npm install
       - name: Cypress run
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         with:
           build: npm run build
           start: npm start
