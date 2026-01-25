@@ -2,7 +2,6 @@ import {
   Component,
   OnDestroy,
   OnInit,
-  Inject,
   PLATFORM_ID,
   ChangeDetectorRef,
   inject,
