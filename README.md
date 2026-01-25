@@ -34,7 +34,7 @@ ng serve
 ```mermaid
 graph TD
     User[User] -->|HTTPS| Traefik[Traefik Proxy]
-    Traefik -->|Routing| App[Angular App (Nginx)]
+    Traefik -->|Routing| App["Angular App (Nginx)"]
     
     subgraph VPS Environment
         Traefik
