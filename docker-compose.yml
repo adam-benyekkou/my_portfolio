@@ -1,6 +1,6 @@
 services:
   portfolio:
-    build: .
+    image: adam-benyekkou/my-portfolio:latest
     container_name: angular-portfolio-system
     ports:
       - "8080:80"
