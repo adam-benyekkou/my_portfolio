@@ -1,5 +1,49 @@
 [
   {
+    "id": "homelab-infrastructure",
+    "title": "HOMELAB_INFRA.EXE",
+    "status": "[OPERATIONAL]",
+    "classification": "Infrastructure as Code Environment",
+    "objective": "Cloud-native homelab managed via GitOps on Hetzner VPS",
+    "statusDescription": "LIVE | SECURED_BY_VAULT",
+    "techStack": [
+      "TERRAFORM",
+      "ANSIBLE",
+      "DOCKER",
+      "GRAFANA",
+      "TRAEFIK",
+      "AUTHENTIK"
+    ],
+    "demoUrl": "",
+    "codeUrl": "https://github.com/adam-benyekkou/my-homelab",
+    "isRedacted": false,
+    "caseStudy": {
+      "title": "HOMELAB_INFRA.EXE",
+      "sections": [
+        {
+          "title": "SYSTEM_OVERVIEW",
+          "content": "A production-grade homelab infrastructure hosted on Hetzner VPS, serving as the technical foundation for DevOps & Cloud Engineering mastery. The entire stack is orchestrated using Docker and managed via Dockge, following a modular approach for scalability."
+        },
+        {
+          "title": "INFRASTRUCTURE_AS_CODE",
+          "content": "Adopts a strict GitOps workflow where all configuration changes are versioned and audited before application. Infrastructure provisioning is handled by Terraform and configuration management by Ansible, ensuring a reproducible and immutable environment."
+        },
+        {
+          "title": "CORE_SERVICES",
+          "content": "• <strong>Security & Identity:</strong> Authentik (SSO) and HashiCorp Vault for secret management.<br>• <strong>Observability:</strong> Prometheus, Grafana, Loki, and AlertManager for real-time monitoring.<br>• <strong>Development:</strong> Gitea for git mirroring and Code-Server for remote development.<br>• <strong>Data Protection:</strong> Restic integration with Backblaze B2 for offsite backups."
+        },
+        {
+          "title": "SECURITY_ARCHITECTURE",
+          "content": "Implemented a secure-by-design approach with strict `.gitignore` policies and environment variable management. Traefik handles edge routing with automatic SSL, while internal services are protected via Authentik middleware. Real-time observability ensures high availability and rapid incident response."
+        },
+        {
+          "title": "OPERATIONAL_METRICS",
+          "content": "• Infrastructure: <strong>Hetzner VPS</strong><br>• Management: <strong>Dockge / GitHub Actions</strong><br>• Backup Strategy: <strong>Restic + Backblaze B2</strong><br>• Uptime: <strong>Monitored by Uptime Kuma</strong>"
+        }
+      ]
+    }
+  },
+  {
     "id": "portfolio",
     "title": "PORTFOLIO_SYSTEM.EXE",
     "status": "[MISSION_ACTIVE]",
