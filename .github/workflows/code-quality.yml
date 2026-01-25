@@ -21,7 +21,7 @@ jobs:
           fetch-depth: 0
 
       - name: MegaLinter
-        uses: oxsecurity/megalinter@v7
+        uses: oxsecurity/megalinter@v9
         env:
           DEFAULT_WORKSPACE: "."
           # Disable very heavy or potentially noisy linters if needed
