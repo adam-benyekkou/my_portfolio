@@ -20,8 +20,8 @@ export class HeroTextComponent implements OnInit, OnDestroy {
   nameText = '';
 
   private messageQueue: string[] = [
-    'Web Developer',
-    'Coding Enjoyer',
+    'DevOps Engineer',
+    'Full Stack Developper',
     'Software Artisan',
   ];
 
@@ -170,8 +170,8 @@ export class HeroTextComponent implements OnInit, OnDestroy {
   private processQueue(): void {
     if (this.messageQueue.length === 0) {
       this.messageQueue = [
-        'Web Developer',
-        'Coding Enjoyer',
+        'DevOps Engineer',
+        'Full Stack Developper',
         'Software Artisan',
       ];
     }
