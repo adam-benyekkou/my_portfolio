@@ -6,9 +6,16 @@
     "classification": "Personal Showcase Platform",
     "objective": "Professional presentation interface with NieR aesthetic",
     "statusDescription": "LIVE | CONTINUOUS_UPDATE",
-    "techStack": ["ANGULAR", "TYPESCRIPT", "TAILWIND", "VERCEL"],
-    "demoUrl": "https://adambenyekkoudev.vercel.app/",
-    "codeUrl": "https://github.com/adam-benyekkou/angular_portfolio",
+    "techStack": [
+      "ANGULAR_19",
+      "TYPESCRIPT",
+      "TAILWIND",
+      "DOCKER",
+      "TRAEFIK",
+      "GITHUB_ACTIONS"
+    ],
+    "demoUrl": "https://portfolio.cavydev.com/",
+    "codeUrl": "https://github.com/adam-benyekkou/my_portfolio",
     "isRedacted": false,
     "caseStudy": {
       "title": "PORTFOLIO_SYSTEM.EXE",
@@ -23,15 +30,15 @@
         },
         {
           "title": "TECHNICAL_IMPLEMENTATION",
-          "content": "Built with Angular 19 and Tailwind CSS using a custom design system. The architecture follows Angular best practices with standalone components, lazy loading, and optimized build processes. Implemented responsive grid layouts, smooth animations, and interactive elements that respond to user interactions while maintaining the game's UI feel. Special attention was paid to performance optimization and accessibility standards."
+          "content": "Built with Angular 19 and Tailwind CSS using a custom design system. The architecture is fully containerized using Docker and deployed via a GitHub Actions CI/CD pipeline. It utilizes Traefik as a reverse proxy for automatic SSL management and routing. The application follows Angular best practices with standalone components, lazy loading, and optimized build processes."
         },
         {
           "title": "CHALLENGES_SOLVED",
-          "content": "<strong>Challenge 1:</strong> Balancing aesthetic authenticity with web accessibility<br><strong>Solution:</strong> Created high-contrast color schemes that pass WCAG guidelines<br><br><strong>Challenge 2:</strong> Making retro aesthetics work on modern devices<br><strong>Solution:</strong> Responsive design system with flexible typography and layouts<br><br><strong>Challenge 3:</strong> Performance with complex visual effects<br><strong>Solution:</strong> CSS-only animations and optimized asset loading"
+          "content": "<strong>Challenge 1:</strong> Balancing aesthetic authenticity with web accessibility<br><strong>Solution:</strong> Created high-contrast color schemes that pass WCAG guidelines<br><br><strong>Challenge 2:</strong> Automated Deployment on VPS<br><strong>Solution:</strong> Implemented a robust CI/CD pipeline using GitHub Actions and Docker<br><br><strong>Challenge 3:</strong> Performance with complex visual effects<br><strong>Solution:</strong> CSS-only animations and optimized asset loading"
         },
         {
           "title": "PERFORMANCE_METRICS",
-          "content": "• Lighthouse score: <strong>95+</strong><br>• First contentful paint: <strong>< 1.2s</strong><br>• Accessibility score: <strong>98%</strong><br>• Mobile optimization: <strong>Perfect responsive design</strong><br>• Bundle size: <strong>< 500KB gzipped</strong><br>• SEO optimization: <strong>100%</strong>"
+          "content": "• Lighthouse score: <strong>95+</strong><br>• First contentful paint: <strong>< 1.2s</strong><br>• Accessibility score: <strong>98%</strong><br>• Deployment: <strong>Automated Docker CI/CD</strong><br>• Bundle size: <strong>< 500KB gzipped</strong><br>• SEO optimization: <strong>100%</strong>"
         }
       ]
     }
