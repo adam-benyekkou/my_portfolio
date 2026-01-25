@@ -1,11 +1,32 @@
 [
   {
+    "id": "fullstack-engineer-intern",
+    "title": "FULL_STACK_ENGINEER.EXE",
+    "classification": "Full-Stack Software Engineer (Python)",
+    "objective": "Spearheaded the development of a professional analytics dashboard using Python Dash to interface with the open-source 'Mobility' library. Acted as a product expert, collaborating with Data Scientists to transform complex simulations into an intuitive GUI tool. Implemented automated testing strategy with Pytest and overhauled installation scripts for cross-platform compatibility.",
+    "timeline": "AREP | September 2025 - November 2025",
+    "techStack": [
+      "PYTHON",
+      "DASH",
+      "PYTEST",
+      "DEVOPS",
+      "LINUX"
+    ],
+    "status": "completed",
+    "statusLabel": "ARCHIVED | INTERNSHIP"
+  },
+  {
     "id": "senior-specialist",
     "title": "PYTHON_API_SPECIALIST.EXE",
     "classification": "Python & Django API/RPA Specialist",
     "objective": "Specialized in Python/Django development for API automation and RPA processes. Led technical interventions for complex enterprise HR system integrations, developing robust solutions that bridge business requirements with technical implementation.",
     "timeline": "UKG | January 2024 - January 2025",
-    "techStack": ["PYTHON", "DJANGO", "API", "RPA"],
+    "techStack": [
+      "PYTHON",
+      "DJANGO",
+      "API",
+      "RPA"
+    ],
     "status": "completed",
     "statusLabel": "ARCHIVED | SME_SPECIALIST"
   },
@@ -15,7 +36,12 @@
     "classification": "Enterprise Systems Integration",
     "objective": "Subject Matter Expert (SME) for enterprise HRSD connectors and system integrations. Specialized in complex technical challenges involving API development, RPA automation, and SFTP protocols. Provided BI support and data visualization solutions.",
     "timeline": "UKG | January 2023 - January 2024",
-    "techStack": ["PYTHON", "DJANGO", "API", "RPA"],
+    "techStack": [
+      "PYTHON",
+      "DJANGO",
+      "API",
+      "RPA"
+    ],
     "status": "completed",
     "statusLabel": "ARCHIVED | SME_SPECIALIST"
   },
@@ -25,7 +51,11 @@
     "classification": "B2B Solution Support",
     "objective": "Delivered high-level technical support for VIP business clients using HRSD solutions. Developed expertise in SaaS platforms and enterprise decision-making processes while managing critical client relationships.",
     "timeline": "UKG | October 2021 - January 2023",
-    "techStack": ["SAAS", "HRSD", "CLIENT_MGMT"],
+    "techStack": [
+      "SAAS",
+      "HRSD",
+      "CLIENT_MGMT"
+    ],
     "status": "completed",
     "statusLabel": "ARCHIVED | VIP_TIER"
   },
@@ -35,7 +65,11 @@
     "classification": "Information Technology Technician",
     "objective": "Provided VIP end-user support, managed hardware/software deployments, and implemented networking and information security practices in a mission-critical environment.",
     "timeline": "Armée de Terre | July 2018 - December 2018",
-    "techStack": ["NETWORKING", "SECURITY", "DEPLOYMENT"],
+    "techStack": [
+      "NETWORKING",
+      "SECURITY",
+      "DEPLOYMENT"
+    ],
     "status": "completed",
     "statusLabel": "ARCHIVED | MILITARY"
   }

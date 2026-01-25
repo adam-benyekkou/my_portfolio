@@ -1,11 +1,16 @@
 {
   "id": "developer-training",
   "title": "DEVELOPER_TRAINING.EXE",
-  "classification": "Concepteur Développeur d'Applications (RNCP Level BAC+4)",
+  "classification": "Application Designer & Developer (Bachelor's Level)",
   "objective": "Intensive full-stack development program focusing on modern web technologies including TypeScript, Node.js, and contemporary development frameworks. Building comprehensive skills in both frontend and backend development.",
   "timeline": "École O'clock | January 2025 - October 2025",
-  "techStack": ["TYPESCRIPT", "NODE.JS", "FULL_STACK", "WEB_FRAMEWORKS"],
-  "status": "current",
-  "statusLabel": "ACTIVE | IN_PROGRESS",
-  "isCurrent": true
+  "techStack": [
+    "TYPESCRIPT",
+    "NODE.JS",
+    "FULL_STACK",
+    "WEB_FRAMEWORKS"
+  ],
+  "status": "completed",
+  "statusLabel": "ARCHIVED | GRADUATED",
+  "isCurrent": false
 }
