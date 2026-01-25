@@ -1,6 +1,6 @@
 services:
   portfolio:
-    image: adam-benyekkou/my-portfolio:latest
+    image: cavydev/my-portfolio:latest
     container_name: angular-portfolio-system
     restart: unless-stopped
     networks:

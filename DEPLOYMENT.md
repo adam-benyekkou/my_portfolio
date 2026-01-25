@@ -56,7 +56,7 @@ You need to add the following secrets to your GitHub Repository to allow the pip
 Once the secrets are set:
 
 1. **Push to Master**: Any push to the `master` branch will trigger the pipeline.
-2. **Build**: GitHub Actions acts as the build server. It builds the Docker image and pushes it to your Docker Hub repository(`adam-benyekkou/my-portfolio`).
+2. **Build**: GitHub Actions acts as the build server. It builds the Docker image and pushes it to your Docker Hub repository(`cavydev/my-portfolio`).
 3. **Deploy**: The action logs into your VPS, pulls the new image, and restarts the container using the configuration in `docker-compose.yml`.
 
 ## 4. Traefik Configuration
