@@ -21,54 +21,149 @@ import { DataService } from '../../../shared/services/data.service';
 export class NeuralProfileTreeComponent implements OnInit {
   private readonly dataService = inject(DataService);
 
-  // Input for external data (optional override)
-  externalData = input<NeuralProfileNode[]>([]);
+  // Configuration Schema
+  private readonly TREE_CONFIG = {
+    workstation: {
+      development: {
+        front: {
+          linkedCell: 1,
+          skills: ['React', 'Angular', 'Tailwind', 'Three.js'],
+        },
+        back: {
+          linkedCell: 2,
+          skills: [
+            'Node.js (TypeScript)',
+            'PHP (Laravel)',
+            'Python (Django)',
+            'Java (Spring)',
+          ],
+        },
+      },
+      infrastructure_ops: {
+        orchestration_ci: {
+          linkedCell: 3,
+          skills: ['Docker', 'GitHub Actions', 'Terraform', 'Ansible'],
+        },
+        security_monitoring: {
+          linkedCell: 4,
+          skills: [
+            'Prometheus',
+            'Grafana',
+            'Authentik',
+            'Vault',
+            'Backblaze B2',
+          ],
+        },
+      },
+      data: {
+        linkedCell: 4,
+        skills: ['PostgreSQL', 'MongoDB'],
+      },
+    },
+  };
 
   // Internal tree state and interaction signals
   private treeState = signal<NeuralProfileNode[]>([]);
   public hoveredNodeId = signal<string | null>(null);
   public selectedNodeId = signal<string | null>(null);
 
+  // Computes the currently active node details based on selection or hover
+  public activeNodeDetails = computed(() => {
+    const selectedId = this.selectedNodeId();
+    const nodes = this.treeState();
+
+    // Helper to find node by ID
+    const findNode = (nodes: NeuralProfileNode[], id: string): NeuralProfileNode | null => {
+      for (const node of nodes) {
+        if (node.id === id) return node;
+        if (node.children) {
+          const found = findNode(node.children, id);
+          if (found) return found;
+        }
+      }
+      return null;
+    };
+
+    if (selectedId) {
+      return findNode(nodes, selectedId);
+    }
+    return null;
+  });
+
   // Computed flattened tree for rendering
   treeData = computed(() => this.flattenTreeWithVisibility(this.treeState()));
 
-  // Computed to determine data source
-  private dataSource = computed(() => {
-    const external = this.externalData();
-    const fromService = this.dataService.skills();
-
-    console.log('External data:', external);
-    console.log('Service data:', fromService);
-    console.log(
-      'Service data type:',
-      Array.isArray(fromService) ? 'array' : typeof fromService,
-    );
-
-    // Use external data if provided, otherwise use service data
-    let data = external.length > 0 ? external : fromService;
-
-    // Ensure data is an array - if it's a single object, wrap it in an array
-    if (data && !Array.isArray(data)) {
-      console.log('Converting single object to array');
-      data = [data];
-    }
-
-    // Ensure data is actually an array
-    return Array.isArray(data) ? data : [];
-  });
-
   constructor() {
-    // Effect to update tree state when data source changes
-    effect(() => {
-      const data = this.dataSource();
-      console.log('Neural profile data updated:', data);
-      this.treeState.set(data);
-    });
+    // Initialize tree data from config
+    const nodes = this.transformConfigToNodes(this.TREE_CONFIG);
+    this.treeState.set(nodes);
   }
 
+  private transformConfigToNodes(config: any): NeuralProfileNode[] {
+    // Helper to create a node
+    const createNode = (
+      id: string,
+      title: string,
+      level: number,
+      children: NeuralProfileNode[] = [],
+      extras: Partial<NeuralProfileNode> = {}
+    ): NeuralProfileNode => ({
+      id,
+      title,
+      level,
+      children,
+      hasChildren: children.length > 0,
+      isExpanded: true, // Default expanded
+      isSelected: false,
+      visible: true,
+      ...extras
+    });
+
+    // Parse the config structure
+    // Root: Workstation (Virtual root, we actually want distinct roots as per request)
+    // But request says: "The tree is now divided into three primary roots: Development, Infrastructure, Data"
+
+    // Development Root
+    const devConfig = config.workstation.development;
+    const devChildren: NeuralProfileNode[] = [
+      createNode('front', 'Front', 1, [], {
+        linkedCell: devConfig.front.linkedCell,
+        skills: devConfig.front.skills
+      }),
+      createNode('back', 'Back', 1, [], {
+        linkedCell: devConfig.back.linkedCell,
+        skills: devConfig.back.skills
+      })
+    ];
+    const devRoot = createNode('development', 'Development', 0, devChildren);
+
+    // Infrastructure Root
+    const infraConfig = config.workstation.infrastructure_ops;
+    const infraChildren: NeuralProfileNode[] = [
+      createNode('orchestration_ci', 'Orchestration', 1, [], {
+        linkedCell: infraConfig.orchestration_ci.linkedCell,
+        skills: infraConfig.orchestration_ci.skills
+      }),
+      createNode('security_monitoring', 'Security', 1, [], {
+        linkedCell: infraConfig.security_monitoring.linkedCell,
+        skills: infraConfig.security_monitoring.skills
+      })
+    ];
+    const infraRoot = createNode('infrastructure_ops', 'Infrastructure', 0, infraChildren);
+
+    // Data Root (Direct mapping as per request logic, it shares Cell 4)
+    const dataConfig = config.workstation.data;
+    const dataRoot = createNode('data', 'Data', 0, [], {
+      linkedCell: dataConfig.linkedCell,
+      skills: dataConfig.skills
+    });
+
+    return [devRoot, infraRoot, dataRoot];
+  }
+
+
   ngOnInit(): void {
-    this.dataService.loadSkills();
-    this.dataService.loadTraits(); // Also traits are used in personal info but skills used here
+    // Data is now hardcoded in the component
   }
 
   private flattenTreeWithVisibility(
@@ -162,43 +257,29 @@ export class NeuralProfileTreeComponent implements OnInit {
     this.hoveredNodeId.set(null);
   }
 
-  getVisualState(sectionId: string): 'normal' | 'selected' | 'hovered' {
+  getVisualState(cellId: number): 'normal' | 'selected' | 'hovered' {
     const hoveredId = this.hoveredNodeId();
     const selectedId = this.selectedNodeId();
+    const nodes = this.treeState();
 
-    // Map node IDs to their corresponding visual sections
-    const nodeToSection: Record<string, string> = {
-      workstation: 'workstation',
-      tools: 'tools',
-      webstorm: 'tools',
-      git: 'tools',
-      docker: 'tools',
-      linux: 'tools',
-      dev: 'dev',
-      front: 'front',
-      angular: 'front',
-      tailwind: 'front',
-      'html-css': 'front',
-      back: 'back',
-      nodejs: 'back',
-      typescript: 'back',
-      php: 'back',
-      python: 'back',
-      data: 'data',
-      postgresql: 'data',
-      mongodb: 'data',
+    const findNode = (nodes: NeuralProfileNode[], id: string): NeuralProfileNode | null => {
+      for (const node of nodes) {
+        if (node.id === id) return node;
+        if (node.children) {
+          const found = findNode(node.children, id);
+          if (found) return found;
+        }
+      }
+      return null;
     };
 
-    // Check if any hovered node belongs to this section
-    if (hoveredId && nodeToSection[hoveredId] === sectionId) {
-      return 'hovered';
+    if (selectedId) {
+      const node = findNode(nodes, selectedId);
+      if (node?.linkedCell === cellId) return 'selected';
     }
 
-    // Check if any selected node belongs to this section
-    if (selectedId && nodeToSection[selectedId] === sectionId) {
-      return 'selected';
-    }
-
+    // Hover logic could be similar if needed, or we can rely solely on selection for the strong link
+    // If request implies simple selection based highlighting:
     return 'normal';
   }
 

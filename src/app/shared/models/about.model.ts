@@ -7,6 +7,8 @@ interface NeuralProfileNode {
   level: number;
   hasChildren: boolean;
   visible: boolean;
+  linkedCell?: number;
+  skills?: string[];
 }
 
 export type { NeuralProfileNode };

@@ -57,68 +57,85 @@
   </div>
 
   <!-- Chip Slots Container -->
-  <article class="hidden md:flex flex-col bg-nier-bg border-2 border-nier-border w-80 h-auto p-6 gap-4 self-stretch">
-    <!-- Tools Chip -->
-    <div class="chip-container" [ngClass]="'chip-' + getVisualState('tools')">
-      <div class="chip-parent tools-parent">
-        <div class="chip-cells-column">
-          @for (tool of ["webstorm", "linux", "git", "docker"]; track tool) {
-          <div class="chip-cell" [class.cell-hovered]="hoveredNodeId() === tool"
-            [class.cell-selected]="selectedNodeId() === tool" role="button" tabindex="0" (click)="selectToolChild(tool)"
-            (keydown.enter)="selectToolChild(tool)" (keydown.space)="selectToolChild(tool)"
-            (mouseenter)="hoverChipChild(tool)" (mouseleave)="clearHover()">
-            <span class="scan-line"></span>
-          </div>
+  <article
+    class="hidden md:flex flex-col bg-nier-bg border-2 border-nier-border w-80 h-auto p-6 gap-4 self-stretch font-terminal">
+    <!-- Cell 1: Development / Front -->
+    <div class="chip-container transition-all duration-300" [class.opacity-100]="getVisualState(1) === 'selected'"
+      [class.opacity-50]="getVisualState(1) !== 'selected'">
+      <div class="border border-nier-border p-3 relative bg-nier-dark/5">
+        <div class="text-xs text-nier-mid mb-2 uppercase tracking-wider">01 // Front</div>
+        @if (activeNodeDetails()?.linkedCell === 1) {
+        <div class="text-nier-dark font-bold text-lg mb-2">{{ activeNodeDetails()?.title }}</div>
+        <div class="flex flex-wrap gap-2">
+          @for (skill of activeNodeDetails()?.skills; track skill) {
+          <span class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">{{ skill
+            }}</span>
           }
         </div>
+        } @else {
+        <div class="text-nier-mid/50 text-sm italic">...waiting for input...</div>
+        }
+        <span class="scan-line"></span>
       </div>
     </div>
 
-    <!-- Frontend Chip -->
-    <div class="chip-container" [ngClass]="'chip-' + getVisualState('front')">
-      <div class="chip-parent frontend-parent">
-        <div class="chip-cells-column">
-          @for (tech of ["angular", "tailwind", "html-css"]; track tech) {
-          <div class="chip-cell" [class.cell-hovered]="hoveredNodeId() === tech"
-            [class.cell-selected]="selectedNodeId() === tech" role="button" tabindex="0" (click)="selectToolChild(tech)"
-            (keydown.enter)="selectToolChild(tech)" (keydown.space)="selectToolChild(tech)"
-            (mouseenter)="hoverChipChild(tech)" (mouseleave)="clearHover()">
-            <span class="scan-line"></span>
-          </div>
+    <!-- Cell 2: Development / Back -->
+    <div class="chip-container transition-all duration-300" [class.opacity-100]="getVisualState(2) === 'selected'"
+      [class.opacity-50]="getVisualState(2) !== 'selected'">
+      <div class="border border-nier-border p-3 relative bg-nier-dark/5">
+        <div class="text-xs text-nier-mid mb-2 uppercase tracking-wider">02 // Back</div>
+        @if (activeNodeDetails()?.linkedCell === 2) {
+        <div class="text-nier-dark font-bold text-lg mb-2">{{ activeNodeDetails()?.title }}</div>
+        <div class="flex flex-wrap gap-2">
+          @for (skill of activeNodeDetails()?.skills; track skill) {
+          <span class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">{{ skill
+            }}</span>
           }
         </div>
+        } @else {
+        <div class="text-nier-mid/50 text-sm italic">...waiting for input...</div>
+        }
+        <span class="scan-line"></span>
       </div>
     </div>
 
-    <!-- Backend Chip -->
-    <div class="chip-container" [ngClass]="'chip-' + getVisualState('back')">
-      <div class="chip-parent backend-parent">
-        <div class="chip-cells-column">
-          @for (lang of ["nodejs", "typescript", "php", "python"]; track lang) {
-          <div class="chip-cell" [class.cell-hovered]="hoveredNodeId() === lang"
-            [class.cell-selected]="selectedNodeId() === lang" role="button" tabindex="0" (click)="selectToolChild(lang)"
-            (keydown.enter)="selectToolChild(lang)" (keydown.space)="selectToolChild(lang)"
-            (mouseenter)="hoverChipChild(lang)" (mouseleave)="clearHover()">
-            <span class="scan-line"></span>
-          </div>
+    <!-- Cell 3: Infrastructure / Orchestration -->
+    <div class="chip-container transition-all duration-300" [class.opacity-100]="getVisualState(3) === 'selected'"
+      [class.opacity-50]="getVisualState(3) !== 'selected'">
+      <div class="border border-nier-border p-3 relative bg-nier-dark/5">
+        <div class="text-xs text-nier-mid mb-2 uppercase tracking-wider">03 // Orchestration</div>
+        @if (activeNodeDetails()?.linkedCell === 3) {
+        <div class="text-nier-dark font-bold text-lg mb-2">{{ activeNodeDetails()?.title }}</div>
+        <div class="flex flex-wrap gap-2">
+          @for (skill of activeNodeDetails()?.skills; track skill) {
+          <span class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">{{ skill
+            }}</span>
           }
         </div>
+        } @else {
+        <div class="text-nier-mid/50 text-sm italic">...waiting for input...</div>
+        }
+        <span class="scan-line"></span>
       </div>
     </div>
 
-    <!-- Database Chip -->
-    <div class="chip-container" [ngClass]="'chip-' + getVisualState('data')">
-      <div class="chip-parent database-parent">
-        <div class="chip-cells-column">
-          @for (db of ["postgresql", "mongodb"]; track db) {
-          <div class="chip-cell" [class.cell-hovered]="hoveredNodeId() === db"
-            [class.cell-selected]="selectedNodeId() === db" role="button" tabindex="0" (click)="selectToolChild(db)"
-            (keydown.enter)="selectToolChild(db)" (keydown.space)="selectToolChild(db)"
-            (mouseenter)="hoverChipChild(db)" (mouseleave)="clearHover()">
-            <span class="scan-line"></span>
-          </div>
+    <!-- Cell 4: Infrastructure / Security or Data -->
+    <div class="chip-container transition-all duration-300" [class.opacity-100]="getVisualState(4) === 'selected'"
+      [class.opacity-50]="getVisualState(4) !== 'selected'">
+      <div class="border border-nier-border p-3 relative bg-nier-dark/5">
+        <div class="text-xs text-nier-mid mb-2 uppercase tracking-wider">04 // Security / Data</div>
+        @if (activeNodeDetails()?.linkedCell === 4) {
+        <div class="text-nier-dark font-bold text-lg mb-2">{{ activeNodeDetails()?.title }}</div>
+        <div class="flex flex-wrap gap-2">
+          @for (skill of activeNodeDetails()?.skills; track skill) {
+          <span class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">{{ skill
+            }}</span>
           }
         </div>
+        } @else {
+        <div class="text-nier-mid/50 text-sm italic">...waiting for input...</div>
+        }
+        <span class="scan-line"></span>
       </div>
     </div>
 

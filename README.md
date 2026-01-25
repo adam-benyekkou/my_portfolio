@@ -29,6 +29,27 @@ npm install
 ng serve
 ```
 
+## Architecture
+
+```mermaid
+graph TD
+    User[User] -->|HTTPS| Traefik[Traefik Proxy]
+    Traefik -->|Routing| App[Angular App (Nginx)]
+    
+    subgraph VPS Environment
+        Traefik
+        App
+    end
+    
+    subgraph CI/CD Pipeline
+        GitHub[GitHub Repo] -->|Push| Actions[GitHub Actions]
+        Actions -->|Build & Push| DockerHub[Docker Hub]
+        Actions -->|SSH Deploy| VPS[VPS Server]
+    end
+    
+    DockerHub -->|Pull Image| App
+```
+
 ## Deployment Architecture
 
 This project uses a fully automated **CI/CD pipeline** via GitHub Actions to deploy to a VPS.
