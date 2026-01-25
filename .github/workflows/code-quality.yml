@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Prettier Action
-        uses: creyD/prettier_action@v4.3
+        uses: creyD/prettier_action@v4.6
         with:
           # This will fail the workflow if the code is not formatted
           dry: true
