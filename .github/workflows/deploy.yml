@@ -67,6 +67,12 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     steps:
+      - name: Debug Secrets
+        run: |
+          if [ -n "${{ secrets.SSH_HOST }}" ]; then echo "SSH_HOST is set"; else echo "SSH_HOST is empty"; fi
+          if [ -n "${{ secrets.SSH_USER }}" ]; then echo "SSH_USER is set"; else echo "SSH_USER is empty"; fi
+          if [ -n "${{ secrets.SSH_KEY }}" ]; then echo "SSH_KEY is set"; else echo "SSH_KEY is empty"; fi
+
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
