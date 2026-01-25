@@ -211,8 +211,8 @@ a[data-label]:active {
   width: 150px;
   height: 150px;
   background-color: var(--color-nier-text-dark);
-  -webkit-mask: url("/images/email_qr_new.svg") no-repeat center / contain;
-  mask: url("/images/email_qr_new.svg") no-repeat center / contain;
+  -webkit-mask: url("/images/email_qr_black.svg") no-repeat center / contain;
+  mask: url("/images/email_qr_black.svg") no-repeat center / contain;
 }
 
 /* ===================== TOUCH DEVICES ===================== */
