@@ -65,8 +65,11 @@ export class NeuralProfileTreeComponent {
   public selectedNodeId = signal<string | null>(null);
 
   // Computes the currently active node details based on selection or hover
+  // Computes the currently active node details based on selection or hover
   public activeNodeDetails = computed(() => {
     const selectedId = this.selectedNodeId();
+    const hoveredId = this.hoveredNodeId();
+    const targetId = hoveredId || selectedId;
     const nodes = this.treeState();
 
     // Helper to find node by ID
@@ -81,8 +84,8 @@ export class NeuralProfileTreeComponent {
       return null;
     };
 
-    if (selectedId) {
-      return findNode(nodes, selectedId);
+    if (targetId) {
+      return findNode(nodes, targetId);
     }
     return null;
   });
@@ -253,6 +256,8 @@ export class NeuralProfileTreeComponent {
 
   getVisualState(cellId: number): 'normal' | 'selected' | 'hovered' {
     const selectedId = this.selectedNodeId();
+    const hoveredId = this.hoveredNodeId();
+    const targetId = hoveredId || selectedId;
     const nodes = this.treeState();
 
     const findNode = (nodes: NeuralProfileNode[], id: string): NeuralProfileNode | null => {
@@ -266,13 +271,11 @@ export class NeuralProfileTreeComponent {
       return null;
     };
 
-    if (selectedId) {
-      const node = findNode(nodes, selectedId);
+    if (targetId) {
+      const node = findNode(nodes, targetId);
       if (node?.linkedCell === cellId) return 'selected';
     }
 
-    // Hover logic could be similar if needed, or we can rely solely on selection for the strong link
-    // If request implies simple selection based highlighting:
     return 'normal';
   }
 
