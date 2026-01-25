@@ -67,6 +67,9 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
       - name: Debug Secrets
         run: |
           if [ -n "${{ secrets.SSH_HOST }}" ]; then echo "SSH_HOST is set"; else echo "SSH_HOST is empty"; fi
