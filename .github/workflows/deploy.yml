@@ -85,9 +85,14 @@ jobs:
           ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
           
           echo "Deploying to $SSH_USER@$SSH_HOST..."
+          # 1. Create directory
+          ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa "$SSH_USER@$SSH_HOST" "mkdir -p /opt/infrastructure/stacks/my-portfolio"
+          
+          # 2. Copy docker-compose.yml
+          scp -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa docker-compose.yml "$SSH_USER@$SSH_HOST:/opt/infrastructure/stacks/my-portfolio/docker-compose.yml"
+          
+          # 3. Pull and Start
           ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa "$SSH_USER@$SSH_HOST" "
-            mkdir -p /opt/infrastructure/stacks/my-portfolio &&
             cd /opt/infrastructure/stacks/my-portfolio &&
             docker compose pull &&
-            docker compose up -d
-          "
+            docker compose up -d"
