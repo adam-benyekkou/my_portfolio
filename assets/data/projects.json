@@ -2,7 +2,7 @@
   {
     "id": "homelab-infrastructure",
     "title": "HOMELAB_INFRA.EXE",
-    "status": "[OPERATIONAL]",
+    "status": "[MISSION_ACTIVE]",
     "classification": "Infrastructure as Code Environment",
     "objective": "Cloud-native homelab managed via GitOps on Hetzner VPS",
     "statusDescription": "LIVE | SECURED_BY_VAULT",
@@ -46,7 +46,7 @@
   {
     "id": "portfolio",
     "title": "PORTFOLIO_SYSTEM.EXE",
-    "status": "[MISSION_ACTIVE]",
+    "status": "[OPERATIONAL]",
     "classification": "Personal Showcase Platform",
     "objective": "Professional presentation interface with NieR aesthetic",
     "statusDescription": "LIVE | CONTINUOUS_UPDATE",
