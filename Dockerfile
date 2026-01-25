@@ -17,6 +17,9 @@ RUN npm run build -- --configuration production
 # Stage 2: Serve
 FROM nginx:alpine
 
+# Update packages to resolve security vulnerabilities (e.g. libpng)
+RUN apk update && apk upgrade --no-cache
+
 # Create a non-root user for nginx
 # Alpine nginx image already has an nginx user, but we'll ensure permissions
 RUN touch /var/run/nginx.pid && \
