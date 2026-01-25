@@ -73,16 +73,21 @@ jobs:
           if [ -n "${{ secrets.SSH_USER }}" ]; then echo "SSH_USER is set"; else echo "SSH_USER is empty"; fi
           if [ -n "${{ secrets.SSH_KEY }}" ]; then echo "SSH_KEY is set"; else echo "SSH_KEY is empty"; fi
 
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: 22
-          debug: true
-          script: |
-            mkdir -p /opt/infrastructure/stacks/my-portfolio
-            cd /opt/infrastructure/stacks/my-portfolio
-            docker compose pull
+      - name: Deploy using ssh
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
+          
+          echo "Deploying to $SSH_USER@$SSH_HOST..."
+          ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa "$SSH_USER@$SSH_HOST" "
+            mkdir -p /opt/infrastructure/stacks/my-portfolio &&
+            cd /opt/infrastructure/stacks/my-portfolio &&
+            docker compose pull &&
             docker compose up -d
+          "
