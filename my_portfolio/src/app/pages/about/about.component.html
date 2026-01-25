@@ -1,0 +1,86 @@
+<section
+  class="border-b border-nier-border min-h-screen checkered-background neural-checkered-bg p-6 lg:p-8 flex flex-col relative neural-section w-full overflow-hidden"
+>
+  <!-- Scanning line effect -->
+  <div class="neural-scan-line"></div>
+
+  <!-- Header section with NieR styling -->
+  <div class="mb-6 lg:mb-8 neural-header">
+    <app-section-title title="NEURAL PROFILE" />
+    <!-- Subtle divider line with animation -->
+    <div class="mt-3 h-px bg-nier-border opacity-50 neural-divider"></div>
+  </div>
+
+  <!-- Main content grid -->
+  <div
+    class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 neural-content-grid w-full"
+  >
+    <!-- Left panel - Neural Profile Tree -->
+    <div class="w-full neural-left-panel">
+      <div
+        class="h-full bg-nier-bg border-2 border-nier-border font-terminal text-nier-dark"
+      >
+        <!-- Inner content container with proper padding -->
+        <div class="h-full p-4 lg:p-6 neural-tree-container">
+          <app-neural-profile-tree />
+        </div>
+      </div>
+    </div>
+
+    <!-- Right panel - Video and status (responsive) -->
+    <div class="w-full flex flex-col gap-4 lg:gap-6 neural-right-panel">
+      <!-- Main video display -->
+      <div
+        class="flex-1 bg-nier-dark border-2 border-nier-accent neural-video-panel"
+      >
+        <div
+          class="h-full min-h-[250px] sm:min-h-[300px] lg:min-h-[400px] xl:min-h-[500px] p-2 neural-video-inner"
+        >
+          <div class="w-full h-full bg-nier-bg/10 border border-nier-border/50">
+            <app-holo-video-container
+              containerClasses="w-full h-full neural-holo-video"
+              videoSrc="video/cyber_skull.mp4"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Status panel -->
+      <div
+        class="bg-nier-mid border-2 border-nier-border font-terminal neural-status-panel"
+      >
+        <div class="p-3 sm:p-4 lg:p-6 neural-status-grid">
+          <!-- Status grid - responsive layout -->
+          <div class="nier-grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 p-3">
+            <div class="text-nier-dark neural-status-item">
+              <div
+                class="text-xs font-terminal-retro tracking-wider opacity-60 mb-1 neural-status-label"
+              >
+                STATUS
+              </div>
+              <div
+                class="flex items-center gap-2 font-terminal text-sm neural-status-value"
+              >
+                <div
+                  class="w-2 h-2 bg-nier-accent animate-pulse neural-pulse-dot"
+                ></div>
+                <span>NEURAL SCAN ACTIVE</span>
+              </div>
+            </div>
+
+            <div class="text-nier-dark neural-status-item">
+              <div
+                class="text-xs font-terminal-retro tracking-wider opacity-60 mb-1 neural-status-label"
+              >
+                MODE
+              </div>
+              <div class="font-terminal text-sm neural-status-value">
+                REAL-TIME ANALYSIS
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

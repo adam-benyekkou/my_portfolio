@@ -1,0 +1,24 @@
+<h2 class="relative">
+  <!-- First shadow layer (light) -->
+  <p
+    #shadow1
+    class="absolute text-6xl font-noto-jp text-white opacity-50"
+    style="transform: translate(3px, 4px)"
+  >
+    {{ title() }}
+  </p>
+
+  <!-- Second shadow layer (dark) -->
+  <p
+    #shadow2
+    class="absolute text-6xl font-noto-jp text-black opacity-15"
+    style="transform: translate(6px, 8px)"
+  >
+    {{ title() }}
+  </p>
+
+  <!-- Main text on top -->
+  <p #mainText class="relative text-6xl font-noto-jp text-nier-dark z-10">
+    {{ title() }}
+  </p>
+</h2>

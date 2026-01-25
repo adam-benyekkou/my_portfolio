@@ -1,0 +1,138 @@
+<div class="flex gap-6 h-auto">
+  <!-- Tree Component -->
+  <div
+    class="bg-nier-bg border-2 border-nier-border text-nier-dark w-96 md:w-[28rem] lg:w-[32rem] font-terminal text-sm md:text-base lg:text-lg leading-relaxed p-4 md:p-6 h-auto">
+    @for (node of treeData(); track node.id) {
+    <div class="border-l-2 border-transparent" [class.border-nier-accent]="node.level >= 2"
+      [class.hidden]="!node.visible">
+      <div
+        class="tree-node-item flex items-center py-1 md:py-2 px-2 md:px-3 cursor-pointer transition-all duration-150 ease-in-out hover:bg-nier-mid/20 hover:translate-x-0.5 relative overflow-hidden focus:outline-none"
+        [class.font-bold]="node.isSelected" [style.padding-left]="getIndentPadding(node.level)"
+        [attr.data-label]="node.title" role="button" tabindex="0" (click)="selectNode(node)"
+        (keydown.enter)="selectNode(node)" (keydown.space)="selectNode(node)" (mouseenter)="hoverNode(node)"
+        (mouseleave)="clearHover()">
+        <!-- Selection indicator -->
+        @if (node.isSelected) {
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-nier-accent"></div>
+        }
+
+        <!-- Expand/Collapse Icon -->
+        <span
+          class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 flex items-center justify-center text-nier-accent mr-2 md:mr-3 cursor-pointer select-none text-sm md:text-base lg:text-lg focus:outline-none"
+          [class.text-nier-mid]="!node.hasChildren" role="button" tabindex="0"
+          (click)="$event.stopPropagation(); toggleExpand(node)"
+          (keydown.enter)="$event.stopPropagation(); toggleExpand(node)"
+          (keydown.space)="$event.stopPropagation(); toggleExpand(node)">
+          @if (node.hasChildren) {
+          {{ node.isExpanded ? "▼" : "▶" }}
+          } @else {
+          @switch (node.level) {
+          @case (2) {
+          ├
+          }
+          @case (3) {
+          @if (isLastChild(node)) {
+          └
+          } @else {
+          ├
+          }
+          }
+          @default {
+          +
+          }
+          }
+          }
+        </span>
+
+        <!-- Node Title with NieR effects -->
+        <span class="flex-1 text-nier-dark select-none relative z-10" [class.font-bold]="node.isSelected">
+          {{ node.title }}
+        </span>
+
+        <!-- Scan line effect -->
+        <span class="scan-line"></span>
+      </div>
+    </div>
+    }
+  </div>
+
+  <!-- Chip Slots Container -->
+  <article class="hidden md:flex flex-col bg-nier-bg border-2 border-nier-border w-80 h-auto p-6 gap-4 self-stretch">
+    <!-- Tools Chip -->
+    <div class="chip-container" [ngClass]="'chip-' + getVisualState('tools')">
+      <div class="chip-parent tools-parent">
+        <div class="chip-cells-column">
+          @for (tool of ["webstorm", "linux", "git", "docker"]; track tool) {
+          <div class="chip-cell" [class.cell-hovered]="hoveredNodeId() === tool"
+            [class.cell-selected]="selectedNodeId() === tool" role="button" tabindex="0" (click)="selectToolChild(tool)"
+            (keydown.enter)="selectToolChild(tool)" (keydown.space)="selectToolChild(tool)"
+            (mouseenter)="hoverChipChild(tool)" (mouseleave)="clearHover()">
+            <span class="scan-line"></span>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Frontend Chip -->
+    <div class="chip-container" [ngClass]="'chip-' + getVisualState('front')">
+      <div class="chip-parent frontend-parent">
+        <div class="chip-cells-column">
+          @for (tech of ["angular", "tailwind", "html-css"]; track tech) {
+          <div class="chip-cell" [class.cell-hovered]="hoveredNodeId() === tech"
+            [class.cell-selected]="selectedNodeId() === tech" role="button" tabindex="0" (click)="selectToolChild(tech)"
+            (keydown.enter)="selectToolChild(tech)" (keydown.space)="selectToolChild(tech)"
+            (mouseenter)="hoverChipChild(tech)" (mouseleave)="clearHover()">
+            <span class="scan-line"></span>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Backend Chip -->
+    <div class="chip-container" [ngClass]="'chip-' + getVisualState('back')">
+      <div class="chip-parent backend-parent">
+        <div class="chip-cells-column">
+          @for (lang of ["nodejs", "typescript", "php", "python"]; track lang) {
+          <div class="chip-cell" [class.cell-hovered]="hoveredNodeId() === lang"
+            [class.cell-selected]="selectedNodeId() === lang" role="button" tabindex="0" (click)="selectToolChild(lang)"
+            (keydown.enter)="selectToolChild(lang)" (keydown.space)="selectToolChild(lang)"
+            (mouseenter)="hoverChipChild(lang)" (mouseleave)="clearHover()">
+            <span class="scan-line"></span>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Database Chip -->
+    <div class="chip-container" [ngClass]="'chip-' + getVisualState('data')">
+      <div class="chip-parent database-parent">
+        <div class="chip-cells-column">
+          @for (db of ["postgresql", "mongodb"]; track db) {
+          <div class="chip-cell" [class.cell-hovered]="hoveredNodeId() === db"
+            [class.cell-selected]="selectedNodeId() === db" role="button" tabindex="0" (click)="selectToolChild(db)"
+            (keydown.enter)="selectToolChild(db)" (keydown.space)="selectToolChild(db)"
+            (mouseenter)="hoverChipChild(db)" (mouseleave)="clearHover()">
+            <span class="scan-line"></span>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Locked Category -->
+    <div class="chip-container chip-locked-category">
+      <div class="chip-parent locked-parent">
+        <div class="locked-content">
+          <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <circle cx="12" cy="12" r="3" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>

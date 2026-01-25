@@ -1,0 +1,56 @@
+.info-card {
+  border: 2px solid var(--color-nier-border);
+  background: var(--color-nier-bg);
+  position: relative;
+  transition: var(--transition-smooth);
+  margin-bottom: var(--card-gap);
+  flex-shrink: 0;
+  border-radius: var(--border-radius);
+
+  /* Card initial state */
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  animation: cardFadeIn var(--animation-duration) ease-out
+    calc(var(--animation-delay-base) * 10) forwards;
+}
+
+.info-card:hover {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: var(--shadow-subtle);
+}
+
+.info-header {
+  background: linear-gradient(
+    135deg,
+    var(--color-nier-dark) 0%,
+    var(--color-nier-highlight) 100%
+  );
+  color: var(--color-nier-text-light);
+  padding: 0.5rem;
+  font-family: var(--font-terminal);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid var(--color-nier-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.info-content {
+  padding: var(--card-padding);
+  background: var(--color-nier-bg);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+/* Add this missing keyframe animation */
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

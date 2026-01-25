@@ -1,0 +1,63 @@
+/* ===================== OPTIMIZED THEME SWITCH BUTTON ===================== */
+
+/* Base SVG styling */
+.svg-icon {
+  transition: all 0.3s ease;
+}
+
+.svg-icon circle[cx="12"][cy="12"][r="5"] {
+  fill: currentColor;
+}
+
+/* Moon cutout - hidden by default */
+.moon-cutout {
+  fill: #1a1a18;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+/* ===================== THEME STATES ===================== */
+
+/* Dark mode - show moon */
+:host-context(.dark) .moon-cutout,
+body[data-theme="dark"] .moon-cutout {
+  fill: var(--color-nier-dark-bg, #292925);
+  opacity: 1;
+}
+
+/* ===================== INTERACTIVE STATES ===================== */
+
+/* Hover and active states */
+:host-context(.svg-button-container:hover) .svg-icon,
+:host-context(.svg-button-container:active) .svg-icon,
+.svg-button-container:hover .svg-icon,
+.svg-button-container:active .svg-icon {
+  transform: rotate(45deg);
+  color: var(--color-nier-text-light, #dcd8c0);
+  fill: var(--color-nier-text-light, #dcd8c0);
+}
+
+:host-context(.svg-button-container:hover) .moon-cutout,
+:host-context(.svg-button-container:active) .moon-cutout,
+.svg-button-container:hover .moon-cutout,
+.svg-button-container:active .moon-cutout {
+  opacity: 1;
+  fill: #3a3a34;
+}
+
+/* ===================== TOUCH DEVICES ===================== */
+
+@media (hover: none) {
+  :host-context(.svg-button-container:active) .svg-icon,
+  .svg-button-container:active .svg-icon {
+    transform: rotate(45deg);
+    color: var(--color-nier-text-light, #dcd8c0);
+    fill: var(--color-nier-text-light, #dcd8c0);
+  }
+
+  :host-context(.svg-button-container:active) .moon-cutout,
+  .svg-button-container:active .moon-cutout {
+    opacity: 1;
+    fill: #3a3a34;
+  }
+}

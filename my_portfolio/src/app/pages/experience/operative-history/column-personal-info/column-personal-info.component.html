@@ -1,0 +1,44 @@
+<div class="column personal-column">
+  <h2 class="column-title">[PERSONAL_DATA]</h2>
+
+  <app-info-card headerTitle="INTERESTS">
+    <div class="interest-item">
+      <span class="interest-label">READINGS:</span>
+      <span class="interest-value"> Science Fiction, Philosophy, Fantasy</span>
+    </div>
+    <div class="interest-item">
+      <span class="interest-label">INTERESTS:</span>
+      <span class="interest-value"
+        >Digital & Tabletop Games, Hiking, Drawing</span
+      >
+    </div>
+    <div class="interest-item">
+      <span class="interest-label">PETS:</span>
+      <span class="interest-value">
+        Proud Dad of 6 Guinea Pigs (You read right!)</span
+      >
+    </div>
+  </app-info-card>
+
+  <app-info-card headerTitle="CORE_TRAITS">
+    @if (dataService.traits().length === 0) {
+      <div class="loading">Loading traits...</div>
+    } @else {
+      <div class="trait-grid">
+        @for (trait of traits(); track trait) {
+          <app-trait-item [traitvalue]="trait" />
+        }
+      </div>
+    }
+  </app-info-card>
+
+  <app-info-card headerTitle="PHILOSOPHY">
+    <p class="philosophy-text">
+      "The most elegant code emerges from understanding both the technical
+      substrate and the consciousness it serves."
+    </p>
+    <div class="philosophy-note">
+      {{ personalNote() }}
+    </div>
+  </app-info-card>
+</div>

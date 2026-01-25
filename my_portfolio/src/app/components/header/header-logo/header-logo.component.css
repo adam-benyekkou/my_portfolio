@@ -1,0 +1,188 @@
+/* ===================== OPTIMIZED NIER LOGO ===================== */
+
+/* Core keyframes - simplified and optimized */
+@keyframes fadeInReveal {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes glitch {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  10.5% {
+    opacity: 0.5;
+    transform: translateX(3px);
+  }
+  30% {
+    opacity: 0.4;
+    transform: translateX(-3px);
+  }
+  80.5% {
+    opacity: 0.6;
+    transform: translateX(5px);
+  }
+}
+
+@keyframes scanLine {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes floatingBlocks {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  10% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(40px, 100px);
+  }
+}
+
+/* ===================== LOGO CONTAINER ===================== */
+
+.nier-logo-container {
+  position: relative;
+  display: inline-block;
+  padding: 0.25rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.nier-logo-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--color-nier-border);
+  pointer-events: none;
+  transition: border-color 0.3s ease;
+}
+
+.nier-logo-container::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 3px;
+  height: 3px;
+  background-color: var(--color-nier-text-dark);
+  box-shadow:
+    -6px 0 0 var(--color-nier-text-dark),
+    -12px 0 0 var(--color-nier-text-dark),
+    0 6px 0 var(--color-nier-text-dark),
+    -6px 6px 0 var(--color-nier-text-dark),
+    -12px 6px 0 var(--color-nier-text-dark);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* ===================== LOGO TEXT ===================== */
+
+.nier-logo {
+  position: relative;
+  color: var(--color-nier-text-dark);
+  text-shadow: 0 0 2px var(--color-nier-text-dark);
+  animation:
+    fadeInReveal 2.5s ease-out forwards,
+    pulse 4s 2.5s infinite;
+  transition: all 0.3s ease;
+}
+
+.nier-logo::before,
+.nier-logo::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  animation: glitch 6s 3s infinite;
+  transition: text-shadow 0.3s ease;
+}
+
+.nier-logo::before {
+  left: 0;
+  text-shadow: 0 0 3px var(--color-nier-text-dark);
+}
+
+.nier-logo::after {
+  left: -2px;
+  text-shadow: -1px 0 1px var(--color-nier-text-dark);
+  animation-delay: 3s;
+  animation-duration: 5s;
+}
+
+/* ===================== EFFECTS ===================== */
+
+.nier-scan-line {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    color-mix(in srgb, var(--color-nier-text-dark) 5%, transparent) 50%,
+    transparent 100%
+  );
+  animation: scanLine 3s linear infinite;
+  z-index: 2;
+  pointer-events: none;
+  transition: background 0.3s ease;
+}
+
+.nier-blocks {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.nier-blocks::before,
+.nier-blocks::after {
+  content: "";
+  position: absolute;
+  background: color-mix(in srgb, var(--color-nier-text-dark) 10%, transparent);
+  animation: floatingBlocks 10s linear infinite;
+  transition: background 0.3s ease;
+}
+
+.nier-blocks::before {
+  top: 20%;
+  left: 10%;
+  width: 10px;
+  height: 6px;
+  animation-delay: 1s;
+}
+
+.nier-blocks::after {
+  bottom: 40%;
+  right: 10%;
+  width: 15px;
+  height: 4px;
+  animation-delay: 3s;
+}

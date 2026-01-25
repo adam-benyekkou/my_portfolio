@@ -1,0 +1,15 @@
+/* QR Code size control for mobile */
+@media (max-width: 767px) {
+  /* Target QR code image inside contact links - assumes proper structure */
+  app-header-contact-links img {
+    max-width: 80px;
+    height: auto;
+  }
+}
+
+/* Additional styles for better typography and spacing */
+@media (min-width: 1024px) {
+  app-header-text-animate-section {
+    width: 100%;
+  }
+}

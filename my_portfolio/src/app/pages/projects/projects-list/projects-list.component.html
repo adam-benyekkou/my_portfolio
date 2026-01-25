@@ -1,0 +1,9 @@
+<!-- projects-list.component.html -->
+<div class="grid-project-cards mb-8 projects-grid">
+  @for (project of projects(); track project.id) {
+    <app-project-card
+      [project]="project"
+      (caseStudyOpen)="onCaseStudyOpen($event)"
+    />
+  }
+</div>

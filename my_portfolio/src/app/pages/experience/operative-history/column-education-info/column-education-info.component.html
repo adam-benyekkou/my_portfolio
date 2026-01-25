@@ -1,0 +1,43 @@
+<!-- Education Column -->
+<div class="column education-column">
+  <h2 class="column-title">[EDUCATION_PROTOCOL]</h2>
+
+  @if (dataService.educations().length === 0) {
+    <div class="loading">Loading education data...</div>
+  } @else {
+    @if (currentTraining(); as training) {
+      <article class="experience-card active-training">
+        <div class="corner-accent"></div>
+        <div class="scan-line"></div>
+
+        <header class="experience-header">
+          <div class="current-status">{{ training.statusLabel }}</div>
+          <h3 class="experience-title">{{ training.title }}</h3>
+        </header>
+
+        <div class="experience-body">
+          <app-detail-block
+            label="PROGRAM:"
+            [value]="training.classification"
+          />
+          <app-detail-block label="INSTITUTION:" [value]="training.timeline" />
+          <app-detail-block label="OBJECTIVE:" [value]="training.objective" />
+          <app-tech-stack
+            label="CURRICULUM:"
+            [techStack]="training.techStack"
+          />
+        </div>
+      </article>
+    } @else {
+      <div class="no-data">No current training found</div>
+    }
+  }
+
+  <!-- Additional Education Info -->
+  <app-info-card headerTitle="ACADEMIC_FOCUS">
+    <p>
+      Full-stack development specialization with emphasis on modern web
+      technologies and enterprise-grade solutions.
+    </p>
+  </app-info-card>
+</div>

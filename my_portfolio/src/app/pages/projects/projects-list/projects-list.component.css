@@ -1,0 +1,51 @@
+/* projects-list.component.css */
+
+/* ===================== GRID LAYOUT ===================== */
+
+.grid-project-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Projects grid animation */
+.projects-grid {
+  opacity: 0;
+  animation: slideInUp 0.8s ease-out 0.6s forwards;
+}
+
+/* ===================== ANIMATIONS ===================== */
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ===================== RESPONSIVE DESIGN ===================== */
+
+@media (max-width: 768px) {
+  .grid-project-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Faster animations on mobile */
+  .projects-grid {
+    animation-duration: 0.6s;
+  }
+}
+
+/* ===================== ACCESSIBILITY ===================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-grid {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}

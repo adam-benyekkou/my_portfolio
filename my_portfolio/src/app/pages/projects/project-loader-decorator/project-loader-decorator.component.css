@@ -1,0 +1,125 @@
+/* project-loader-decorator.component.css */
+
+.terminal-header {
+  opacity: 0;
+  animation: terminalBootUp 0.8s ease-out 0.2s forwards;
+}
+
+.enhanced-scan {
+  background: linear-gradient(
+    0deg,
+    transparent 0%,
+    rgba(212, 175, 55, 0.1) 50%,
+    transparent 100%
+  );
+  animation: scanLines 3s ease-in-out infinite;
+}
+
+.terminal-line {
+  opacity: 0;
+  animation: typeWriter 0.6s ease-out forwards;
+}
+
+.terminal-line:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.terminal-line:nth-child(4) {
+  animation-delay: 3.2s;
+}
+.terminal-line:nth-child(5) {
+  animation-delay: 3.4s;
+}
+
+.progress-container {
+  opacity: 0;
+  animation: fadeIn 0.3s ease-out 0.8s forwards;
+}
+
+/* Enhanced scan line animation */
+@keyframes scanLines {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0.05;
+  }
+  50% {
+    transform: translateY(50%);
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateY(200%);
+    opacity: 0.05;
+  }
+}
+
+/* Terminal boot up animation */
+@keyframes terminalBootUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+    filter: brightness(0.8);
+  }
+  50% {
+    opacity: 0.7;
+    filter: brightness(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+/* Typewriter effect for terminal lines */
+@keyframes typeWriter {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .terminal-header {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .terminal-line {
+    font-size: 0.875rem;
+  }
+
+  .progress-container {
+    margin: 1rem 0;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .terminal-header,
+  .enhanced-scan,
+  .terminal-line,
+  .progress-container {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

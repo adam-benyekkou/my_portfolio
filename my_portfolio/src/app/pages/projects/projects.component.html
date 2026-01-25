@@ -1,0 +1,29 @@
+<!-- projects.component.html -->
+<section class="min-h-screen bg-nier-bg checkered-background">
+  <!-- Section title with animation -->
+  <div
+    class="pt-8 pl-8 pb-8 bg-nier-bg checkered-background section-title-container"
+  >
+    <app-section-title title="EXECUTE // DIRECTORY" />
+  </div>
+
+  <div class="max-w-6xl mx-auto p-6">
+    <app-project-loader-decorator [isLoading]="isLoading()" />
+
+    <!-- Directory Tree with animation -->
+    <app-project-tree />
+
+    <!-- Projects List -->
+    <app-project-list
+      [projects]="projects()"
+      (caseStudyOpen)="openCaseStudy($event)"
+    />
+
+    <app-project-footer [projects]="projects()" />
+  </div>
+
+  <app-project-modal
+    [project]="selectedProject()"
+    (closeModal)="closeCaseStudy()"
+  />
+</section>

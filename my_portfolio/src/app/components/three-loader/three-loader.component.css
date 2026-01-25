@@ -1,0 +1,67 @@
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(220, 216, 192, 0.9); /* NieR BG with opacity */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+}
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+canvas {
+  width: 150px;
+  height: 150px;
+}
+
+.loader-text {
+  color: var(--color-nier-dark);
+  font-size: 0.8rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  animation: blink 1s step-end infinite;
+}
+
+.loader-bar-container {
+  width: 200px;
+  height: 2px;
+  background-color: var(--color-nier-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.loader-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  background-color: var(--color-nier-dark);
+  animation: slide 2s ease-in-out infinite;
+}
+
+@keyframes slide {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.5;
+  }
+}

@@ -1,0 +1,104 @@
+/* ===================== CONTACT PAGE ANIMATIONS ===================== */
+
+/* Core keyframes - reused across components */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-30px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===================== INFO PANELS ===================== */
+
+/* Info panels */
+.info-panel {
+  opacity: 0;
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+.info-panel:nth-child(1) {
+  animation-delay: 1.6s;
+}
+.info-panel:nth-child(2) {
+  animation-delay: 1.7s;
+}
+
+/* Info panel titles and content */
+.info-panel-title {
+  opacity: 0;
+  animation: slideInLeft 0.4s ease-out forwards;
+}
+
+.info-panel-content {
+  opacity: 0;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.info-panel:nth-child(1) .info-panel-title {
+  animation-delay: 1.8s;
+}
+.info-panel:nth-child(2) .info-panel-title {
+  animation-delay: 1.9s;
+}
+
+.info-panel:nth-child(1) .info-panel-content {
+  animation-delay: 1.9s;
+}
+.info-panel:nth-child(2) .info-panel-content {
+  animation-delay: 2s;
+}
+
+/* ===================== RESPONSIVE DESIGN ===================== */
+
+@media (max-width: 768px) {
+  .info-panel:nth-child(1) {
+    animation-delay: 1.3s;
+  }
+  .info-panel:nth-child(2) {
+    animation-delay: 1.4s;
+  }
+
+  /* Faster animations on mobile */
+  .info-panel {
+    animation-duration: 0.6s;
+  }
+
+  .info-panel-title,
+  .info-panel-content {
+    animation-duration: 0.3s;
+  }
+}
+
+/* ===================== ACCESSIBILITY ===================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *[class*="info-"] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

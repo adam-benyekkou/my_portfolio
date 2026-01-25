@@ -1,0 +1,21 @@
+<div class="block w-full h-full" [ngClass]="containerClasses">
+  <div class="bg-slate-900 rounded-lg overflow-hidden w-full h-full">
+    <div class="relative w-full h-full">
+      <canvas
+        #canvas
+        class="block w-full h-full cursor-grab active:cursor-grabbing"
+      ></canvas>
+
+      @if (isLoadingValue) {
+        <div
+          class="absolute inset-0 bg-black/80 flex items-center justify-center flex-col text-green-400 text-lg font-sans z-10"
+        >
+          <div
+            class="w-10 h-10 border-3 border-gray-600 border-t-green-400 rounded-full animate-spin mb-4"
+          ></div>
+          <span>Loading...</span>
+        </div>
+      }
+    </div>
+  </div>
+</div>

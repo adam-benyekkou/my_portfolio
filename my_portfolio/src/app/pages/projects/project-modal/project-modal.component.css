@@ -1,0 +1,116 @@
+/* Simple fade-in for overlay */
+.modal-overlay {
+  opacity: 0;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Simple fade-in for container */
+.modal-container {
+  opacity: 0;
+  animation: fadeIn 0.4s ease-out 0.1s forwards;
+}
+
+/* Header fade-in */
+.modal-header {
+  opacity: 0;
+  animation: fadeIn 0.3s ease-out 0.2s forwards;
+}
+
+/* Content fade-in */
+.modal-content {
+  opacity: 0;
+  animation: fadeIn 0.4s ease-out 0.3s forwards;
+}
+
+/* Sections with staggered fade-in */
+.modal-section {
+  opacity: 0;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.modal-section:nth-child(1) {
+  animation-delay: 0.4s;
+}
+.modal-section:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.modal-section:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.modal-section:nth-child(4) {
+  animation-delay: 0.7s;
+}
+.modal-section:nth-child(5) {
+  animation-delay: 0.8s;
+}
+
+/* Close button fade-in */
+.modal-close-btn {
+  opacity: 0;
+  animation: fadeIn 0.2s ease-out 0.4s forwards;
+  transition: transform 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Simple fade animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Exit animations */
+.modal-overlay.closing {
+  animation: fadeOut 0.2s ease-in forwards;
+}
+
+.modal-container.closing {
+  animation: fadeOut 0.2s ease-in forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Responsive: Faster animations on mobile */
+@media (max-width: 768px) {
+  .modal-section:nth-child(1) {
+    animation-delay: 0.3s;
+  }
+  .modal-section:nth-child(2) {
+    animation-delay: 0.35s;
+  }
+  .modal-section:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  .modal-section:nth-child(4) {
+    animation-delay: 0.45s;
+  }
+  .modal-section:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+}
+
+/* Accessibility: No animations for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .modal-overlay,
+  .modal-container,
+  .modal-header,
+  .modal-content,
+  .modal-section,
+  .modal-close-btn {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}

@@ -1,0 +1,8 @@
+<div class="tech-section">
+  <div class="detail-label">{{ label() }}</div>
+  <div class="tech-grid">
+    @for (tech of techStack(); track tech) {
+      <span class="tech-item">{{ tech }}</span>
+    }
+  </div>
+</div>
