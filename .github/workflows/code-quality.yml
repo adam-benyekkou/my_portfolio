@@ -1,0 +1,43 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  megalinter:
+    name: MegaLinter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: MegaLinter
+        uses: oxsecurity/megalinter@v7
+        env:
+          DEFAULT_WORKSPACE: "."
+          # Disable very heavy or potentially noisy linters if needed
+          # ENABLE_LINTERS: JSON_ESLINT,MARKDOWN_MARKDOWNLINT,TYPESCRIPT_ESLINT
+          # DISABLE_LINTERS: COPYPASTE_JSCPD
+
+  prettier:
+    name: Prettier Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Prettier Action
+        uses: creyD/prettier_action@v4.3
+        with:
+          # This will fail the workflow if the code is not formatted
+          dry: true
+          # To auto-format, you could set dry: false (but requires write token/PR setup)

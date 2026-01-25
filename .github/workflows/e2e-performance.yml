@@ -1,0 +1,48 @@
+name: E2E and Performance
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Install npm dependencies, cache them correctly
+      # and run all Cypress tests
+      # Note: This assumes you have Cypress installed and configured in your project
+      # If not, this step usually serves as a placeholder or requires setup
+      # For now, we will use the official action which handles npm install
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          build: npm run build
+          start: npm start
+          wait-on: 'http://localhost:4200'
+          # We don't have Cypress tests configured in the repo yet, so we continue-on-error
+          # to preventing blocking valid builds until you write tests.
+        continue-on-error: true
+
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          # Configuration for Lighthouse
+          # We need to serve the site. Using a simple static server on the build output.
+          # Assuming 'dist/angular-portfolio/browser' is the build output
+          urls: 'http://localhost:4200'
+          # This action can manage the server start too if configured properly
+          # Typically requires LHCI config file. simplified here:
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+        continue-on-error: true # Don't fail yet as we need proper config
