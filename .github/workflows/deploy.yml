@@ -68,11 +68,13 @@ jobs:
     if: github.event_name == 'push'
     steps:
       - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.2.4
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
+          port: 22
+          debug: true
           script: |
             mkdir -p /opt/infrastructure/stacks/my-portfolio
             cd /opt/infrastructure/stacks/my-portfolio

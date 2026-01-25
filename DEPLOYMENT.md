@@ -41,7 +41,7 @@ You need to add the following secrets to your GitHub Repository to allow the pip
 | `DOCKER_PASSWORD` | Docker Hub Access Token | Docker Hub -> Account Settings -> Security -> **New Access Token** (Read/Write/Delete) |
 | `SSH_HOST` | Your VPS IP Address | Hetzner Cloud Console |
 | `SSH_USER` | The username you SSH with | Usually `root` or your custom user (e.g., `adam`) |
-| `SSH_KEY` | Your private SSH Key | The contents of your local private key file (e.g., `~/.ssh/id_rsa`).<br>**Format**: Must include `-----BEGIN OPE...` and `...KEY-----`. |
+| `SSH_KEY` | Your private SSH Key | The contents of your local private key file (e.g., `~/.ssh/id_rsa`).<br>**Important**: Must be in **PEM format** (starts with `-----BEGIN RSA PRIVATE KEY-----`).<br>If using OpenSSH format (starts with `BEGIN OPENSSH`), convert it: `ssh-keygen -p -m PEM -f ~/.ssh/id_rsa` |
 
 ## 3. Deployment Flow
 
