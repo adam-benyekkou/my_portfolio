@@ -1,7 +1,7 @@
 {
   "id": "developer-training",
   "title": "DEVELOPER_TRAINING.EXE",
-  "classification": "Application Designer & Developer (Bachelor's Level)",
+  "classification": "Application Designer & Developer (RNCP Level 6 / Bachelor's Equiv.)",
   "objective": "Intensive full-stack development program focusing on modern web technologies including TypeScript, Node.js, and contemporary development frameworks. Building comprehensive skills in both frontend and backend development.",
   "timeline": "École O'clock | January 2025 - October 2025",
   "techStack": [
@@ -11,6 +11,6 @@
     "WEB_FRAMEWORKS"
   ],
   "status": "completed",
-  "statusLabel": "ARCHIVED | GRADUATED",
+  "statusLabel": "ARCHIVED | ACHIEVED",
   "isCurrent": false
 }
