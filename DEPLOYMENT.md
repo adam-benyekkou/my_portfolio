@@ -29,6 +29,14 @@ Ensure your VPS is ready to receive the deployment.
     docker network create proxy-network
     ```
 
+4. **Docker Permissions**:
+    Ensure your user can run docker commands without sudo:
+
+    ```bash
+    sudo usermod -aG docker $USER
+    # Log out and log back in for this to take effect!
+    ```
+
 ## 2. GitHub Secrets Configuration
 
 You need to add the following secrets to your GitHub Repository to allow the pipeline to build and deploy.
