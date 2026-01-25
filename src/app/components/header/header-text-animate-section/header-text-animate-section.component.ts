@@ -131,7 +131,7 @@ export class HeaderTextAnimateSectionComponent implements OnDestroy {
     this.nextTextTimer = setTimeout(() => {
       this.startNextText();
       this.nextTextTimer = null;
-    }, delay) as any;
+    }, delay) as unknown as number;
   }
 
   private startNextText(): void {
