@@ -1,11 +1,8 @@
 import {
   Component,
-  input,
   signal,
   computed,
   inject,
-  effect,
-  OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { type NeuralProfileNode } from '../../../shared/models/about.model';
@@ -18,7 +15,7 @@ import { DataService } from '../../../shared/services/data.service';
   templateUrl: './neural-profile-tree.component.html',
   styleUrl: './neural-profile-tree.component.css',
 })
-export class NeuralProfileTreeComponent implements OnInit {
+export class NeuralProfileTreeComponent {
   private readonly dataService = inject(DataService);
 
   // Configuration Schema
@@ -99,7 +96,7 @@ export class NeuralProfileTreeComponent implements OnInit {
     this.treeState.set(nodes);
   }
 
-  private transformConfigToNodes(config: any): NeuralProfileNode[] {
+  private transformConfigToNodes(config: typeof this.TREE_CONFIG): NeuralProfileNode[] {
     // Helper to create a node
     const createNode = (
       id: string,
@@ -162,9 +159,6 @@ export class NeuralProfileTreeComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-    // Data is now hardcoded in the component
-  }
 
   private flattenTreeWithVisibility(
     nodes: NeuralProfileNode[],
@@ -258,7 +252,6 @@ export class NeuralProfileTreeComponent implements OnInit {
   }
 
   getVisualState(cellId: number): 'normal' | 'selected' | 'hovered' {
-    const hoveredId = this.hoveredNodeId();
     const selectedId = this.selectedNodeId();
     const nodes = this.treeState();
 
