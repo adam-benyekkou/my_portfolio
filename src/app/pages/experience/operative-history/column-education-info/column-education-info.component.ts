@@ -31,6 +31,8 @@ export class ColumnEducationInfoComponent implements OnInit {
       (edu) => edu.status === 'current' || edu.isCurrent,
     );
     console.log('Current training:', current);
-    return current || null;
+
+    // Fallback: if no current training, return the first one (most recent usually)
+    return current || educations[0] || null;
   });
 }
