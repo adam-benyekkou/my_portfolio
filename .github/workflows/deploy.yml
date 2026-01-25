@@ -70,12 +70,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Debug Secrets
-        run: |
-          if [ -n "${{ secrets.SSH_HOST }}" ]; then echo "SSH_HOST is set"; else echo "SSH_HOST is empty"; fi
-          if [ -n "${{ secrets.SSH_USER }}" ]; then echo "SSH_USER is set"; else echo "SSH_USER is empty"; fi
-          if [ -n "${{ secrets.SSH_KEY }}" ]; then echo "SSH_KEY is set"; else echo "SSH_KEY is empty"; fi
-
       - name: Deploy using ssh
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
