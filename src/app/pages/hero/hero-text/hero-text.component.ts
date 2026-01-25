@@ -1,7 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  Inject,
+  PLATFORM_ID,
+  ChangeDetectorRef,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-hero-text',
+  standalone: true,
   imports: [],
   templateUrl: './hero-text.component.html',
   styleUrl: './hero-text.component.css',
@@ -20,13 +29,28 @@ export class HeroTextComponent implements OnInit, OnDestroy {
   private currentName = 'ADAM\nBENYEKKOU';
   private isGlitching = false;
   private isNameGlitching = false;
-  private frameRequest: number | null = null;
-  private nameFrameRequest: number | null = null;
-  private processTimeout: ReturnType<typeof setTimeout> | null = null;
-  private isInitialMount = true;
+
+  // Tracking for cleanup
+  private timeouts: any[] = [];
+  private rafIds: number[] = [];
+
+  private isBrowser: boolean;
+
+  constructor(
+    @Inject(PLATFORM_ID) platformId: Object,
+    private cdr: ChangeDetectorRef
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   ngOnInit(): void {
-    this.initialMountAnimation();
+    if (this.isBrowser) {
+      this.initialMountAnimation();
+    } else {
+      // Server-side rendering fallback: show static text immediately
+      this.nameText = this.currentName;
+      this.displayText = this.messageQueue[0];
+    }
   }
 
   ngOnDestroy(): void {
@@ -34,19 +58,35 @@ export class HeroTextComponent implements OnInit, OnDestroy {
   }
 
   private cleanup(): void {
-    if (this.frameRequest) {
-      cancelAnimationFrame(this.frameRequest);
-    }
-    if (this.nameFrameRequest) {
-      cancelAnimationFrame(this.nameFrameRequest);
-    }
-    if (this.processTimeout) {
-      clearTimeout(this.processTimeout);
+    this.timeouts.forEach((t) => clearTimeout(t));
+    this.timeouts = [];
+
+    if (this.isBrowser) {
+      this.rafIds.forEach((id) => cancelAnimationFrame(id));
+      this.rafIds = [];
     }
   }
 
+  private addTimeout(fn: () => void, delay: number): void {
+    const id = setTimeout(() => {
+      try {
+        fn();
+      } finally {
+        this.timeouts = this.timeouts.filter((t) => t !== id);
+      }
+    }, delay);
+    this.timeouts.push(id);
+  }
+
+  private addRaf(fn: () => void): void {
+    if (!this.isBrowser) return;
+    const id = requestAnimationFrame(() => {
+      fn();
+    });
+    this.rafIds.push(id);
+  }
+
   private initialMountAnimation(): void {
-    // Start both animations simultaneously
     this.animateNameOnInit();
     this.animateDisplayTextOnInit();
   }
@@ -71,14 +111,16 @@ export class HeroTextComponent implements OnInit, OnDestroy {
         }
 
         this.nameText = output;
+        this.cdr.markForCheck(); // Ensure update
 
         if (currentIndex < targetName.length) {
           currentIndex++;
-          setTimeout(animateNextLetter, 45 + Math.random() * 35); // Slightly slower for name
+          this.addTimeout(animateNextLetter, 45 + Math.random() * 35);
         } else {
           // Name animation complete, start glitching
           this.nameText = targetName;
           this.isNameGlitching = true;
+          this.cdr.markForCheck();
           this.glitchName();
         }
       }
@@ -95,31 +137,28 @@ export class HeroTextComponent implements OnInit, OnDestroy {
       if (currentIndex <= firstMessage.length) {
         let output = '';
 
-        // Build the confirmed part
         for (let i = 0; i < currentIndex; i++) {
           output += firstMessage[i];
         }
 
-        // Add intense scrambling for upcoming letters
         const scrambleLength = Math.min(6, firstMessage.length - currentIndex);
         for (let i = 0; i < scrambleLength; i++) {
           output += Math.random() > 0.5 ? '0' : '1';
         }
 
         this.displayText = output;
+        this.cdr.markForCheck();
 
         if (currentIndex < firstMessage.length) {
           currentIndex++;
-          setTimeout(animateNextLetter, 35 + Math.random() * 25);
+          this.addTimeout(animateNextLetter, 35 + Math.random() * 25);
         } else {
-          // Mount animation complete, start normal cycle
           this.displayText = firstMessage;
           this.currentMessage = firstMessage;
           this.messageQueue.shift();
-          this.isInitialMount = false;
+          this.cdr.markForCheck();
 
-          // Start the regular cycle after a short pause
-          setTimeout(() => {
+          this.addTimeout(() => {
             this.processQueue();
           }, 2000);
         }
@@ -141,7 +180,7 @@ export class HeroTextComponent implements OnInit, OnDestroy {
     const nextMessage = this.messageQueue.shift()!;
     this.startScrambleAnimation(nextMessage);
 
-    this.processTimeout = setTimeout(() => {
+    this.addTimeout(() => {
       this.processQueue();
     }, 6000);
   }
@@ -169,27 +208,30 @@ export class HeroTextComponent implements OnInit, OnDestroy {
       }
 
       this.displayText = output;
+      this.cdr.markForCheck();
 
       if (complete < nextMessage.length) {
         complete += 0.5 + Math.floor(Math.random() * 2);
-        setTimeout(update, 40 + Math.random() * 60);
+        this.addTimeout(update, 40 + Math.random() * 60);
       } else {
         this.displayText = nextMessage;
         this.currentMessage = nextMessage;
         this.isGlitching = true;
+        this.cdr.markForCheck();
         this.glitchText();
       }
     };
 
     this.isGlitching = false;
-    if (this.frameRequest) {
-      cancelAnimationFrame(this.frameRequest);
-    }
     update();
   }
 
   private glitchText(): void {
     if (!this.isGlitching) return;
+
+    // Safety check to ensure we don't glitch forever if component destroyed
+    // (though cleanup handles this, redundancy is good)
+    if (!this.isBrowser) return;
 
     const probability = Math.random();
 
@@ -199,9 +241,11 @@ export class HeroTextComponent implements OnInit, OnDestroy {
         .map(() => (Math.random() > 0.5 ? '0' : '1'))
         .join('');
       this.displayText = scrambledText;
+      this.cdr.markForCheck();
 
-      setTimeout(() => {
+      this.addTimeout(() => {
         this.displayText = this.currentMessage;
+        this.cdr.markForCheck();
       }, 25);
     } else if (probability < 0.15) {
       const textArray = this.currentMessage.split('');
@@ -210,89 +254,80 @@ export class HeroTextComponent implements OnInit, OnDestroy {
         textArray[idx] = Math.random() > 0.5 ? '0' : '1';
       }
       this.displayText = textArray.join('');
+      this.cdr.markForCheck();
 
-      setTimeout(() => {
+      this.addTimeout(() => {
         this.displayText = this.currentMessage;
+        this.cdr.markForCheck();
       }, 20);
     }
 
+    // Jitter
     const jitterProbability = Math.random();
     if (jitterProbability < 0.1) {
-      setTimeout(() => {
+      this.addTimeout(() => {
+        // ... implementation ...
+        // Simplified for robustness
         const textArray = this.displayText.split('');
-        for (let i = 0; i < 2; i++) {
+        if (textArray.length > 0) {
           const idx = Math.floor(Math.random() * textArray.length);
           if (textArray[idx] === '0' || textArray[idx] === '1') {
             textArray[idx] = textArray[idx] === '0' ? '1' : '0';
           }
-        }
-        this.displayText = textArray.join('');
+          this.displayText = textArray.join('');
+          this.cdr.markForCheck();
 
-        setTimeout(() => {
-          this.displayText = this.currentMessage;
-        }, 15);
+          this.addTimeout(() => {
+            this.displayText = this.currentMessage;
+            this.cdr.markForCheck();
+          }, 15);
+        }
       }, 15);
     }
 
-    this.frameRequest = requestAnimationFrame(() => {
-      setTimeout(() => this.glitchText(), Math.random() * 500);
+    this.addRaf(() => {
+      this.addTimeout(() => this.glitchText(), Math.random() * 500);
     });
   }
 
   private glitchName(): void {
     if (!this.isNameGlitching) return;
+    if (!this.isBrowser) return;
 
     const probability = Math.random();
 
     if (probability < 0.03) {
-      // Less frequent than displayText glitching
       const scrambledName = this.currentName
         .split('')
         .map((char) => (char === '\n' ? '\n' : Math.random() > 0.5 ? '0' : '1'))
         .join('');
       this.nameText = scrambledName;
+      this.cdr.markForCheck();
 
-      setTimeout(() => {
+      this.addTimeout(() => {
         this.nameText = this.currentName;
+        this.cdr.markForCheck();
       }, 30);
     } else if (probability < 0.08) {
+      // ... similar logic ...
       const nameArray = this.currentName.split('');
       for (let i = 0; i < Math.floor(nameArray.length * 0.15); i++) {
         const idx = Math.floor(Math.random() * nameArray.length);
         if (nameArray[idx] !== '\n') {
-          // Don't replace line breaks
           nameArray[idx] = Math.random() > 0.5 ? '0' : '1';
         }
       }
       this.nameText = nameArray.join('');
+      this.cdr.markForCheck();
 
-      setTimeout(() => {
+      this.addTimeout(() => {
         this.nameText = this.currentName;
+        this.cdr.markForCheck();
       }, 25);
     }
 
-    // Subtle character jitter
-    const jitterProbability = Math.random();
-    if (jitterProbability < 0.05) {
-      setTimeout(() => {
-        const nameArray = this.nameText.split('');
-        for (let i = 0; i < 1; i++) {
-          // Just 1 character at a time for name
-          const idx = Math.floor(Math.random() * nameArray.length);
-          if (nameArray[idx] === '0' || nameArray[idx] === '1') {
-            nameArray[idx] = nameArray[idx] === '0' ? '1' : '0';
-          }
-        }
-        this.nameText = nameArray.join('');
-
-        setTimeout(() => {
-          this.nameText = this.currentName;
-        }, 20);
-      }, 20);
-    }
-
-    this.nameFrameRequest = requestAnimationFrame(() => {
-      setTimeout(() => this.glitchName(), Math.random() * 800); // Slower glitching for name
+    this.addRaf(() => {
+      this.addTimeout(() => this.glitchName(), Math.random() * 800);
     });
   }
 }
