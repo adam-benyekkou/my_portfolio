@@ -35,7 +35,7 @@
     "@types/jasmine": "~5.1.0",
     "@types/jest": "^29.5.14",
     "@types/three": "^0.176.0",
-    "angular-eslint": "21.0.1",
+    "angular-eslint": "21.1.0",
     "autoprefixer": "^10.4.21",
     "cssnano": "^6.1.2",
     "eslint": "^9.39.1",
