@@ -9,6 +9,8 @@ import { Component, signal } from '@angular/core';
 export class ProjectTreeComponent {
   directoryLines = signal([
     'EXECUTE//DIRECTORY/',
+    '├── INFRASTRUCTURE/',
+    '│   └── homelab_infra.exe',
     '├── WEB_APPLICATIONS/',
     '│   ├── portfolio_system.exe',
     '│   └── [CLASSIFIED].exe',
