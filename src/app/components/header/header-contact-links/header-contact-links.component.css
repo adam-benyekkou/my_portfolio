@@ -2,22 +2,26 @@
 
 /* Core keyframes - reused across components */
 @keyframes glitchEffect {
+
   0%,
   100% {
     opacity: 0;
     transform: translateX(0);
     clip-path: inset(0);
   }
+
   10% {
     opacity: 0.2;
     transform: translateX(-2px);
     clip-path: inset(10% 0 80% 0);
   }
+
   20% {
     opacity: 0.2;
     transform: translateX(2px);
     clip-path: inset(30% 0 50% 0);
   }
+
   30% {
     opacity: 0.1;
     transform: translateX(-1px);
@@ -30,6 +34,7 @@
     opacity: 0.5;
     left: -100%;
   }
+
   to {
     opacity: 0;
     left: 100%;
@@ -40,6 +45,7 @@
   from {
     opacity: 0.2;
   }
+
   to {
     opacity: 0;
   }
@@ -205,8 +211,8 @@ a[data-label]:active {
   width: 150px;
   height: 150px;
   background-color: var(--color-nier-text-dark);
-  -webkit-mask: url("/images/email_qr_black.svg") no-repeat center / contain;
-  mask: url("/images/email_qr_black.svg") no-repeat center / contain;
+  -webkit-mask: url("/images/email_qr_new.png") no-repeat center / contain;
+  mask: url("/images/email_qr_new.png") no-repeat center / contain;
 }
 
 /* ===================== TOUCH DEVICES ===================== */
