@@ -5,6 +5,7 @@ import {
   Inject,
   PLATFORM_ID,
   ChangeDetectorRef,
+  inject,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -31,15 +32,13 @@ export class HeroTextComponent implements OnInit, OnDestroy {
   private isNameGlitching = false;
 
   // Tracking for cleanup
-  private timeouts: any[] = [];
+  private timeouts: ReturnType<typeof setTimeout>[] = [];
   private rafIds: number[] = [];
 
   private isBrowser: boolean;
+  private readonly cdr = inject(ChangeDetectorRef);
 
-  constructor(
-    @Inject(PLATFORM_ID) platformId: Object,
-    private cdr: ChangeDetectorRef
-  ) {
+  constructor(@Inject(PLATFORM_ID) platformId: object) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
