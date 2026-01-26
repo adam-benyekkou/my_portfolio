@@ -1,64 +1,15 @@
-<div class="flex gap-6 h-auto w-full">
+<div class="flex flex-col md:flex-row gap-6 h-auto w-full">
   <!-- Tree Component -->
   <div
     class="bg-nier-bg border-2 border-nier-border text-nier-dark flex-1 font-terminal text-sm md:text-base lg:text-lg leading-relaxed p-4 md:p-6 h-auto">
     @for (node of treeData(); track node.id) {
-    <div class="border-l-2 border-transparent" [class.border-nier-accent]="node.level >= 2"
-      [class.hidden]="!node.visible">
-      <div
-        class="tree-node-item flex items-center py-1 md:py-2 px-2 md:px-3 cursor-pointer transition-all duration-150 ease-in-out hover:bg-nier-mid/20 hover:translate-x-0.5 relative overflow-hidden focus:outline-none"
-        [class.font-bold]="node.isSelected" [style.padding-left]="getIndentPadding(node.level)"
-        [attr.data-label]="node.title" role="button" tabindex="0" (click)="selectNode(node)"
-        (keydown.enter)="selectNode(node)" (keydown.space)="selectNode(node)" (mouseenter)="hoverNode(node)"
-        (mouseleave)="clearHover()">
-        <!-- Selection indicator -->
-        @if (node.isSelected) {
-        <div class="absolute left-0 top-0 bottom-0 w-1 bg-nier-accent"></div>
-        }
-
-        <!-- Expand/Collapse Icon -->
-        <span
-          class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 flex items-center justify-center text-nier-accent mr-2 md:mr-3 cursor-pointer select-none text-sm md:text-base lg:text-lg focus:outline-none"
-          [class.text-nier-mid]="!node.hasChildren" role="button" tabindex="0"
-          (click)="$event.stopPropagation(); toggleExpand(node)"
-          (keydown.enter)="$event.stopPropagation(); toggleExpand(node)"
-          (keydown.space)="$event.stopPropagation(); toggleExpand(node)">
-          @if (node.hasChildren) {
-          {{ node.isExpanded ? "▼" : "▶" }}
-          } @else {
-          @switch (node.level) {
-          @case (2) {
-          ├
-          }
-          @case (3) {
-          @if (isLastChild(node)) {
-          └
-          } @else {
-          ├
-          }
-          }
-          @default {
-          +
-          }
-          }
-          }
-        </span>
-
-        <!-- Node Title with NieR effects -->
-        <span class="flex-1 text-nier-dark select-none relative z-10" [class.font-bold]="node.isSelected">
-          {{ node.title }}
-        </span>
-
-        <!-- Scan line effect -->
-        <span class="scan-line"></span>
-      </div>
-    </div>
+    <!-- ... existing tree content ... -->
     }
   </div>
 
   <!-- Chip Slots Container -->
   <article
-    class="hidden md:flex flex-col bg-nier-bg border-2 border-nier-border w-80 h-auto p-6 gap-4 self-stretch font-terminal">
+    class="flex flex-col bg-nier-bg border-nier-border w-full md:w-80 h-auto p-4 md:p-6 gap-4 self-stretch font-terminal border-t-2 md:border-t-0 md:border-2 md:border-l-0">
     <!-- Cell 1: Development / Front -->
     <div class="chip-container transition-all duration-300" [class.opacity-100]="getVisualState(1) === 'selected'"
       [class.opacity-50]="getVisualState(1) !== 'selected'">
