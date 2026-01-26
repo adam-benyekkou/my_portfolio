@@ -78,16 +78,20 @@
 }
 
 @layer tailwind-utilities {
+
   /* Font utilities */
   .font-terminal {
     font-family: var(--font-terminal);
   }
+
   .font-terminal-retro {
     font-family: var(--font-terminal-retro);
   }
+
   .font-terminal-nier {
     font-family: var(--font-terminal-nier);
   }
+
   .font-noto-jp {
     font-family: var(--font-noto-jp);
     letter-spacing: -0.02em;
@@ -97,9 +101,11 @@
   .bg-nier-bg {
     background-color: var(--color-nier-bg);
   }
+
   .bg-nier-dark {
     background-color: var(--color-nier-dark);
   }
+
   .bg-nier-mid {
     background-color: var(--color-nier-mid);
   }
@@ -108,6 +114,7 @@
   .text-nier-dark {
     color: var(--color-nier-text-dark);
   }
+
   .text-nier-light {
     color: var(--color-nier-text-light);
   }
@@ -116,6 +123,7 @@
   .border-nier-border {
     border-color: var(--color-nier-border);
   }
+
   .border-nier-accent {
     border-color: var(--color-nier-accent);
   }
@@ -125,16 +133,12 @@
     background-color: var(--color-nier-checkered-bg);
     background-size: 0.3rem 0.3rem;
     background-image:
-      linear-gradient(
-        to right,
+      linear-gradient(to right,
         var(--color-nier-checkered-grid) 1px,
-        transparent 1px
-      ),
-      linear-gradient(
-        to bottom,
+        transparent 1px),
+      linear-gradient(to bottom,
         var(--color-nier-checkered-grid) 1px,
-        transparent 1px
-      );
+        transparent 1px);
     color: var(--color-nier-text-dark);
     transition: all 0.3s ease;
   }
@@ -171,22 +175,18 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(
-      135deg,
-      var(--color-nier-accent) 0%,
-      var(--color-nier-highlight) 100%
-    );
+    background: linear-gradient(135deg,
+        var(--color-nier-accent) 0%,
+        var(--color-nier-highlight) 100%);
     border: 1px solid var(--color-nier-border);
     border-radius: 1px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(
-      135deg,
-      var(--color-nier-highlight) 0%,
-      var(--color-nier-accent) 100%
-    );
+    background: linear-gradient(135deg,
+        var(--color-nier-highlight) 0%,
+        var(--color-nier-accent) 100%);
     transform: scale(1.1);
   }
 
@@ -209,16 +209,12 @@
     background: var(--color-nier-checkered-bg);
     background-size: 8px 8px;
     background-image:
-      linear-gradient(
-        to right,
+      linear-gradient(to right,
         var(--color-nier-checkered-grid) 1px,
-        transparent 1px
-      ),
-      linear-gradient(
-        to bottom,
+        transparent 1px),
+      linear-gradient(to bottom,
         var(--color-nier-checkered-grid) 1px,
-        transparent 1px
-      );
+        transparent 1px);
     border: 2px solid var(--color-nier-border);
   }
 
@@ -311,16 +307,12 @@
     background: var(--color-nier-checkered-bg);
     background-size: 6px 6px;
     background-image:
-      linear-gradient(
-        to right,
+      linear-gradient(to right,
         var(--color-nier-checkered-grid) 1px,
-        transparent 1px
-      ),
-      linear-gradient(
-        to bottom,
+        transparent 1px),
+      linear-gradient(to bottom,
         var(--color-nier-checkered-grid) 1px,
-        transparent 1px
-      );
+        transparent 1px);
   }
 
   /* NieR UI specific scrollbars */
@@ -341,4 +333,10 @@
     border: 1px outset var(--color-nier-highlight);
     border-radius: 0;
   }
+}
+
+/* Ensure full height layout */
+html,
+body {
+  height: 100%;
 }

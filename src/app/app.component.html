@@ -1,19 +1,21 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ title }}</title>
-  </head>
 
-  <body>
-    <app-header />
-    <main class="bg-nier-bg checkered-background">
-      <div class="route-container">
-        <router-outlet />
-      </div>
-    </main>
-    <app-footer />
-    <app-three-loader />
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title }}</title>
+</head>
+
+<body class="flex flex-col min-h-screen">
+  <app-header />
+  <main class="flex-1 flex flex-col bg-nier-bg checkered-background">
+    <div class="route-container flex-1 flex flex-col">
+      <router-outlet />
+    </div>
+  </main>
+  <app-footer />
+  <app-three-loader />
+</body>
+
 </html>
