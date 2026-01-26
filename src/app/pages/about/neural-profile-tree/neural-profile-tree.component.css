@@ -2,19 +2,23 @@
 
 /* Core keyframes */
 @keyframes textGlitch {
+
   0%,
   100% {
     transform: translateX(0);
     clip-path: inset(0);
   }
+
   10% {
     transform: translateX(-2px);
     clip-path: inset(0 0 40% 0);
   }
+
   20% {
     transform: translateX(1px);
     clip-path: inset(40% 0 0 0);
   }
+
   30% {
     transform: translateX(-1px);
     clip-path: inset(20% 0 20% 0);
@@ -26,6 +30,7 @@
     opacity: 0.5;
     left: -100%;
   }
+
   to {
     opacity: 0;
     left: 100%;
@@ -103,12 +108,15 @@
 .tools-parent {
   background: linear-gradient(135deg, #a67c63, #8b6b52);
 }
+
 .frontend-parent {
   background: linear-gradient(135deg, #b8916f, #a67c63);
 }
+
 .backend-parent {
   background: linear-gradient(135deg, #c9b896, #b8916f);
 }
+
 .database-parent {
   background: linear-gradient(135deg, #e6d7b8, #d4c4a0);
 }
@@ -235,12 +243,10 @@
 }
 
 .mobile-skill-tag {
-  background: linear-gradient(
-    135deg,
-    var(--color-nier-accent, #d4af37) 0%,
-    var(--color-nier-highlight, #f4d03f) 100%
-  );
-  color: var(--color-nier-text-light, #ffffff);
+  background: linear-gradient(135deg,
+      var(--color-nier-accent, #d4af37) 0%,
+      var(--color-nier-highlight, #f4d03f) 100%);
+  color: var(--color-nier-text-dark, #2a2a2a);
   padding: 0.25rem 0.5rem;
   font-size: 0.7rem;
   font-weight: bold;

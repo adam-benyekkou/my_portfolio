@@ -215,7 +215,7 @@ export class HoloVideoContainerComponent implements OnInit, OnDestroy {
     const distanceWidth = gridWidth / 2 / Math.tan(hFov / 2);
 
     const isMobile = window.innerWidth <= 768;
-    const distanceFactor = isMobile ? 1.4 : 0.95;
+    const distanceFactor = isMobile ? 1.1 : 0.95;
     this.camera.position.z = Math.max(distanceHeight, distanceWidth) * distanceFactor;
   }
 
@@ -720,10 +720,36 @@ export class HoloVideoContainerComponent implements OnInit, OnDestroy {
       }
 
       this.video.src = src;
-      this.video.loop = true; // Ensure loop is set after changing source
-      this.video.muted = true; // Also ensure muted is maintained
-      this.video.autoplay = true; // Ensure autoplay is maintained
-      this.video.load();
+      this.video.loop = true;
+      this.video.muted = true;
+      this.video.autoplay = true;
+      this.video.playsInline = true; // Ensure property is set
+      this.video.setAttribute('playsinline', 'true');
+      this.video.setAttribute('webkit-playsinline', 'true');
+
+      // Robust loading with timeout
+      await new Promise((resolve, reject) => {
+        const timeout = setTimeout(() => reject('Video load timeout'), 10000);
+
+        const onCanPlay = () => {
+          clearTimeout(timeout);
+          this.video.removeEventListener('canplay', onCanPlay);
+          this.video.removeEventListener('error', onError);
+          resolve(true);
+        };
+
+        const onError = (e: Event) => {
+          clearTimeout(timeout);
+          this.video.removeEventListener('canplay', onCanPlay);
+          this.video.removeEventListener('error', onError);
+          reject(e);
+        };
+
+        this.video.addEventListener('canplay', onCanPlay);
+        this.video.addEventListener('error', onError);
+        this.video.load();
+      });
+
       await this.video.play();
     } catch (error) {
       console.warn('Video load failed:', error);
