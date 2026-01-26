@@ -135,7 +135,11 @@ export class NeuralProfileTreeComponent {
         skills: devConfig.back.skills
       })
     ];
-    const devRoot = createNode('development', 'Development', 0, devChildren);
+    // Aggregation for Development Root
+    const devRoot = createNode('development', 'Development', 0, devChildren, {
+      linkedCell: 1, // Default to first cell or logic to show both?
+      skills: [...devConfig.front.skills, ...devConfig.back.skills]
+    });
 
     // Infrastructure Root
     const infraConfig = config.workstation.infrastructure_ops;
@@ -149,7 +153,11 @@ export class NeuralProfileTreeComponent {
         skills: infraConfig.security_monitoring.skills
       })
     ];
-    const infraRoot = createNode('infrastructure_ops', 'Infrastructure', 0, infraChildren);
+    // Aggregation for Infrastructure Root
+    const infraRoot = createNode('infrastructure_ops', 'Infrastructure', 0, infraChildren, {
+      linkedCell: 3,
+      skills: [...infraConfig.orchestration_ci.skills, ...infraConfig.security_monitoring.skills]
+    });
 
     // Data Root (Direct mapping as per request logic, it shares Cell 4)
     const dataConfig = config.workstation.data;

@@ -214,7 +214,9 @@ export class HoloVideoContainerComponent implements OnInit, OnDestroy {
     const distanceHeight = gridHeight / 2 / Math.tan(vFov / 2);
     const distanceWidth = gridWidth / 2 / Math.tan(hFov / 2);
 
-    this.camera.position.z = Math.max(distanceHeight, distanceWidth) * 0.95;
+    const isMobile = window.innerWidth <= 768;
+    const distanceFactor = isMobile ? 1.4 : 0.95;
+    this.camera.position.z = Math.max(distanceHeight, distanceWidth) * distanceFactor;
   }
 
   @HostListener('window:resize')
@@ -313,13 +315,17 @@ export class HoloVideoContainerComponent implements OnInit, OnDestroy {
     this.video.loop = true;
     this.video.preload = 'auto';
     this.video.setAttribute('playsinline', 'true');
+    this.video.setAttribute('webkit-playsinline', 'true');
 
     this.canvas2D = document.createElement('canvas');
     this.canvas2D.width = this.GRID_WIDTH;
     this.canvas2D.height = this.GRID_HEIGHT;
     this.ctx2D = this.canvas2D.getContext('2d')!;
 
-    await this.createAnimatedPattern();
+    // Only create pattern if no source is provided to avoid mobile captureStream issues
+    if (!this.videoSrc) {
+      await this.createAnimatedPattern();
+    }
   }
 
   private async createAnimatedPattern(): Promise<void> {
