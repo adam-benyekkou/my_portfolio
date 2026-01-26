@@ -233,3 +233,22 @@
     color: var(--color-nier-text-dark);
   }
 }
+
+.mobile-skill-tag {
+  background: linear-gradient(
+    135deg,
+    var(--color-nier-accent, #d4af37) 0%,
+    var(--color-nier-highlight, #f4d03f) 100%
+  );
+  color: var(--color-nier-text-light, #ffffff);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: bold;
+  font-family: var(--font-terminal, 'Courier New', monospace);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 3px;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+}
