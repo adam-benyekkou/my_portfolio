@@ -727,6 +727,8 @@ export class HoloVideoContainerComponent implements OnInit, OnDestroy {
       await this.video.play();
     } catch (error) {
       console.warn('Video load failed:', error);
+      // Fallback to pattern if video fails
+      await this.createAnimatedPattern();
     }
   }
 

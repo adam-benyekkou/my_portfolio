@@ -1,7 +1,7 @@
 <div class="flex flex-col md:flex-row gap-6 h-auto w-full">
   <!-- Tree Component -->
   <div
-    class="bg-nier-bg border-2 border-nier-border text-nier-dark flex-1 font-terminal text-sm md:text-base lg:text-lg leading-relaxed p-4 md:p-6 h-auto">
+    class="hidden md:block bg-nier-bg border-2 border-nier-border text-nier-dark flex-1 font-terminal text-sm md:text-base lg:text-lg leading-relaxed p-4 md:p-6 h-auto">
     @for (node of treeData(); track node.id) {
     <!-- ... existing tree content ... -->
     }
@@ -24,7 +24,17 @@
           }
         </div>
         } @else {
-        <div class="text-nier-mid/50 text-sm italic">...waiting for input...</div>
+        <!-- Mobile: Show static skills -->
+        <div class="md:hidden flex flex-wrap gap-2">
+          <span class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">React</span>
+          <span class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">Angular</span>
+          <span
+            class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">Tailwind</span>
+          <span
+            class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">Three.js</span>
+        </div>
+        <!-- Desktop: Show waiting -->
+        <div class="hidden md:block text-nier-mid/50 text-sm italic">...waiting for input...</div>
         }
         <span class="scan-line"></span>
       </div>
@@ -44,7 +54,15 @@
           }
         </div>
         } @else {
-        <div class="text-nier-mid/50 text-sm italic">...waiting for input...</div>
+        <!-- Mobile: Show static skills -->
+        <div class="md:hidden flex flex-wrap gap-2">
+          <span class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">Node.js</span>
+          <span class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">PHP</span>
+          <span class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">Python</span>
+          <span class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">Java</span>
+        </div>
+        <!-- Desktop: Show waiting -->
+        <div class="hidden md:block text-nier-mid/50 text-sm italic">...waiting for input...</div>
         }
         <span class="scan-line"></span>
       </div>
@@ -64,7 +82,16 @@
           }
         </div>
         } @else {
-        <div class="text-nier-mid/50 text-sm italic">...waiting for input...</div>
+        <!-- Mobile: Show static skills -->
+        <div class="md:hidden flex flex-wrap gap-2">
+          <span class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">Docker</span>
+          <span class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">K8s</span>
+          <span
+            class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">Terraform</span>
+          <span class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">Ansible</span>
+        </div>
+        <!-- Desktop: Show waiting -->
+        <div class="hidden md:block text-nier-mid/50 text-sm italic">...waiting for input...</div>
         }
         <span class="scan-line"></span>
       </div>
@@ -84,7 +111,17 @@
           }
         </div>
         } @else {
-        <div class="text-nier-mid/50 text-sm italic">...waiting for input...</div>
+        <!-- Mobile: Show static skills -->
+        <div class="md:hidden flex flex-wrap gap-2">
+          <span
+            class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">Prometheus</span>
+          <span class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">Grafana</span>
+          <span
+            class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">PostgreSQL</span>
+          <span class="text-xs px-2 py-1 bg-nier-accent/10 text-nier-accent border border-nier-accent/30">MongoDB</span>
+        </div>
+        <!-- Desktop: Show waiting -->
+        <div class="hidden md:block text-nier-mid/50 text-sm italic">...waiting for input...</div>
         }
         <span class="scan-line"></span>
       </div>
