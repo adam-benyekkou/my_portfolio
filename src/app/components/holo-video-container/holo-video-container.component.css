@@ -37,10 +37,10 @@
 
 /* Mobile */
 @media (max-width: 768px) {
-  :host {
-    max-height: 70vh;
-    /* Don't take full screen on mobile */
-  }
+  /* :host { */
+  /* max-height: 70vh; */
+  /* Don't take full screen on mobile - DISABLED for Hero full screen fix */
+  /* } */
 
   .absolute.top-5.right-5 {
     inset: 0.625rem 0.625rem auto 0.625rem;
