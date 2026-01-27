@@ -301,7 +301,6 @@
     }
   }
 
-  /* Special scrollbar for checkered backgrounds */
   .checkered-bg::-webkit-scrollbar-track,
   .checkered-background::-webkit-scrollbar-track {
     background: var(--color-nier-checkered-bg);
@@ -315,7 +314,6 @@
         transparent 1px);
   }
 
-  /* NieR UI specific scrollbars */
   .nier-panel::-webkit-scrollbar,
   .nier-menu::-webkit-scrollbar {
     width: 10px;
@@ -335,7 +333,6 @@
   }
 }
 
-/* Ensure full height layout */
 html,
 body {
   height: 100%;

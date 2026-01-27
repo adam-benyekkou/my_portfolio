@@ -28,7 +28,6 @@ export class HoloVideoContainerComponent implements OnInit, OnDestroy {
 
   isLoading = signal(false);
 
-  // Three.js objects
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private renderer!: THREE.WebGLRenderer;
@@ -49,7 +48,6 @@ export class HoloVideoContainerComponent implements OnInit, OnDestroy {
   readonly GRID_HEIGHT = 180;
   readonly POINTS_COUNT = this.GRID_WIDTH * this.GRID_HEIGHT;
 
-  // Enhanced mouse and effects
   private mouseX = 0;
   private mouseY = 0;
   private isMouseOverCanvas = false;
@@ -57,18 +55,15 @@ export class HoloVideoContainerComponent implements OnInit, OnDestroy {
   private glitchIntensity = 0;
   private resizeObserver!: ResizeObserver;
 
-  // Enhanced scatter properties
   private scatterIntensityMap = new Float32Array(this.POINTS_COUNT);
   private scatterDecayMap = new Float32Array(this.POINTS_COUNT);
   private readonly MAX_SCATTER_DISTANCE = 600;
   private readonly SCATTER_STRENGTH = 45;
   private readonly GLOW_INTENSITY = 4.0;
 
-  // Optimization: Reuse arrays
   private tempPositions = new Float32Array(this.POINTS_COUNT * 3);
   private tempColors = new Float32Array(this.POINTS_COUNT * 3);
 
-  // MEMORY LEAK FIX: Add pattern animation cleanup
   private patternAnimationId = 0;
   private isDestroyed = false;
   private readonly ngZone = inject(NgZone);
@@ -100,15 +95,12 @@ export class HoloVideoContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // MEMORY LEAK FIX: Comprehensive cleanup
     this.cleanup();
   }
 
-  // MEMORY LEAK FIX: Proper cleanup method
   private cleanup(): void {
     this.isDestroyed = true;
 
-    // Cancel all animations
     if (this.animationId) {
       cancelAnimationFrame(this.animationId);
       this.animationId = 0;
@@ -119,12 +111,10 @@ export class HoloVideoContainerComponent implements OnInit, OnDestroy {
       this.patternAnimationId = 0;
     }
 
-    // Disconnect resize observer
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
     }
 
-    // Stop and cleanup video
     if (this.video) {
       this.video.pause();
       if (this.video.srcObject) {
@@ -136,7 +126,6 @@ export class HoloVideoContainerComponent implements OnInit, OnDestroy {
       this.video.load();
     }
 
-    // Cleanup Three.js resources
     if (this.geometry) {
       this.geometry.dispose();
     }
