@@ -88,6 +88,52 @@
     }
   },
   {
+    "id": "greenroots",
+    "title": "GREENROOTS_ECO.EXE",
+    "status": "[MISSION_ACTIVE]",
+    "classification": "Sustainable E-commerce Platform",
+    "objective": "Global reforestation initiative with solar-powered aesthetic",
+    "statusDescription": "LIVE | SUSTAINABLE_OPS",
+    "techStack": [
+      "REACT",
+      "VITE",
+      "NODE_JS",
+      "EXPRESS",
+      "POSTGRESQL",
+      "DOCKER",
+      "TRAEFIK",
+      "STRIPE"
+    ],
+    "demoUrl": "https://greenroots.cavydev.com/",
+    "codeUrl": "https://github.com/adam-benyekkou/greenroots-ecom",
+    "isRedacted": false,
+    "caseStudy": {
+      "title": "GREENROOTS_ECO.EXE",
+      "sections": [
+        {
+          "title": "PROJECT_OVERVIEW",
+          "content": "A premium, high-fidelity e-commerce platform dedicated to global reforestation. It connects users—both individuals and organizations—with impactful tree-planting projects worldwide, facilitating direct contribution to biodiversity and climate action."
+        },
+        {
+          "title": "DESIGN_PHILOSOPHY",
+          "content": "Built with a Sustainable Web Design philosophy, featuring a unique 'Solar-Powered / Low-tech Magazine' aesthetic. The visual style utilizes a high-fidelity retro look with analog dithering effects and organic color palettes. The UI adapts programmatically based on the project's continent (e.g., specific color grades for Europe, Asia, Africa), emphasizing clarity, transparency, and the beauty of nature."
+        },
+        {
+          "title": "TECHNICAL_IMPLEMENTATION",
+          "content": "Frontend is powered by React Router (v7) and Vite, styled with a modular, variable-based Vanilla CSS architecture for dynamic theming. The backend utilizes Node.js and Express.js with PostgreSQL for data persistence. The entire infrastructure is containerized with Docker, using Traefik as an edge router for automatic SSL, and orchestrated via a robust GitHub Actions CI/CD pipeline."
+        },
+        {
+          "title": "KEY_ACHIEVEMENTS",
+          "content": "• Implemented a custom, performance-friendly CSS-only dithering effect to achieve the retro aesthetic without heavy assets.<br>• Built a robust CI/CD pipeline ensuring code quality (linting, type-checking) and automated production deployment.<br>• Designed a scalable folder structure distinguishing between feature-based modules and shared components."
+        },
+        {
+          "title": "OPERATIONAL_METRICS",
+          "content": "• Infrastructure: <strong>Docker & Traefik</strong><br>• Testing: <strong>Vitest & Playwright</strong><br>• Payments: <strong>Stripe Integration</strong><br>• Deployment: <strong>GitHub Actions</strong>"
+        }
+      ]
+    }
+  },
+  {
     "id": "redacted-1",
     "title": "REDACTED_PROJECT_1",
     "status": "[REDACTED]",
