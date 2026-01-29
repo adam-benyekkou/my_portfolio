@@ -12,6 +12,7 @@ export class ProjectTreeComponent {
     '├── INFRASTRUCTURE/',
     '│   └── homelab_infra.exe',
     '├── WEB_APPLICATIONS/',
+    '│   ├── greenroots_ecom.exe',
     '│   ├── portfolio_system.exe',
     '│   └── [CLASSIFIED].exe',
     '└── EXPERIMENTAL_PROJECTS/',
