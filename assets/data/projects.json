@@ -89,7 +89,7 @@
   },
   {
     "id": "greenroots",
-    "title": "GREENROOTS_ECO.EXE",
+    "title": "GREENROOTS_ECOM.EXE",
     "status": "[MISSION_ACTIVE]",
     "classification": "Sustainable E-commerce Platform",
     "objective": "Global reforestation initiative with solar-powered aesthetic",
@@ -108,7 +108,7 @@
     "codeUrl": "https://github.com/adam-benyekkou/greenroots-ecom",
     "isRedacted": false,
     "caseStudy": {
-      "title": "GREENROOTS_ECO.EXE",
+      "title": "GREENROOTS_ECOM.EXE",
       "sections": [
         {
           "title": "PROJECT_OVERVIEW",
