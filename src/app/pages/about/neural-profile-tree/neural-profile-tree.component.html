@@ -3,7 +3,38 @@
   <div
     class="hidden md:block bg-nier-bg border-2 border-nier-border text-nier-dark flex-1 font-terminal text-sm md:text-base lg:text-lg leading-relaxed p-4 md:p-6 h-auto">
     @for (node of treeData(); track node.id) {
-    <!-- ... existing tree content ... -->
+    <div class="tree-node-item cursor-pointer flex items-center group py-0.5"
+      [class.selected-node]="selectedNodeId() === node.id" [class.hovered-node]="hoveredNodeId() === node.id"
+      [style.padding-left]="getIndentPadding(node.level)" (click)="selectNode(node)" (mouseenter)="hoverNode(node)"
+      (mouseleave)="clearHover()">
+
+      <!-- Dynamic Tree Lines -->
+      <span class="mr-2 opacity-60 font-mono text-xs md:text-sm lg:text-base">
+        @if (node.level > 0) {
+        <span class="tree-line">│</span>
+        <span class="tree-branch">{{ isLastChild(node) ? '└──' : '├──' }}</span>
+        } @else {
+        <span class="tree-root">></span>
+        }
+      </span>
+
+      <!-- Folder/Leaf Icon -->
+      <span class="mr-2 opacity-70">
+        @if (node.hasChildren) {
+        <span class="text-xs transition-transform duration-200 inline-block" [class.rotate-90]="node.isExpanded"
+          (click)="$event.stopPropagation(); toggleExpand(node)">▶</span>
+        } @else {
+        <span class="text-[10px] opacity-40">■</span>
+        }
+      </span>
+
+      <span class="detail-value flex-1 truncate transition-colors duration-200">
+        {{ node.title }}
+      </span>
+
+      <!-- Scan line effect on hover -->
+      <div class="scan-line"></div>
+    </div>
     }
   </div>
 

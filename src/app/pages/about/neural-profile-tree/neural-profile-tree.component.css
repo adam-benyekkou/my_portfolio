@@ -90,6 +90,21 @@
   transform: scale(0.98);
 }
 
+.selected-node {
+  color: var(--color-nier-text-dark);
+  border-bottom-color: var(--color-nier-text-dark);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.selected-node::before {
+  width: 100%;
+}
+
+.hovered-node {
+  color: var(--color-nier-text-dark);
+  background: rgba(0, 0, 0, 0.02);
+}
+
 /* ===================== CHIP SYSTEM ===================== */
 
 .chip-container {
