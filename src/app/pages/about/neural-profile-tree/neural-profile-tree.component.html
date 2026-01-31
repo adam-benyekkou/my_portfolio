@@ -53,7 +53,7 @@
       <div class="border border-nier-border p-3 relative bg-nier-dark/5">
         <div class="text-xs text-nier-mid mb-2 uppercase tracking-wider">01 // Front</div>
 
-        <div class="text-nier-dark font-bold text-lg mb-2">
+        <div class="font-bold text-lg mb-2 text-nier-dark" [class.text-nier-accent]="getVisualState(1) !== 'normal'">
           {{ (activeNodeDetails()?.linkedCell === 1 ? activeNodeDetails()?.title : CELL_DATA[1].title) }}
         </div>
         <div class="flex flex-wrap gap-2">
@@ -77,7 +77,7 @@
       <div class="border border-nier-border p-3 relative bg-nier-dark/5">
         <div class="text-xs text-nier-mid mb-2 uppercase tracking-wider">02 // Back</div>
 
-        <div class="text-nier-dark font-bold text-lg mb-2">
+        <div class="font-bold text-lg mb-2 text-nier-dark" [class.text-nier-accent]="getVisualState(2) !== 'normal'">
           {{ (activeNodeDetails()?.linkedCell === 2 ? activeNodeDetails()?.title : CELL_DATA[2].title) }}
         </div>
         <div class="flex flex-wrap gap-2">
@@ -101,7 +101,7 @@
       <div class="border border-nier-border p-3 relative bg-nier-dark/5">
         <div class="text-xs text-nier-mid mb-2 uppercase tracking-wider">03 // Orchestration</div>
 
-        <div class="text-nier-dark font-bold text-lg mb-2">
+        <div class="font-bold text-lg mb-2 text-nier-dark" [class.text-nier-accent]="getVisualState(3) !== 'normal'">
           {{ (activeNodeDetails()?.linkedCell === 3 ? activeNodeDetails()?.title : CELL_DATA[3].title) }}
         </div>
         <div class="flex flex-wrap gap-2">
@@ -125,7 +125,7 @@
       <div class="border border-nier-border p-3 relative bg-nier-dark/5">
         <div class="text-xs text-nier-mid mb-2 uppercase tracking-wider">04 // Security / Data</div>
 
-        <div class="text-nier-dark font-bold text-lg mb-2">
+        <div class="font-bold text-lg mb-2 text-nier-dark" [class.text-nier-accent]="getVisualState(4) !== 'normal'">
           {{ (activeNodeDetails()?.linkedCell === 4 ? activeNodeDetails()?.title : CELL_DATA[4].title) }}
         </div>
         <div class="flex flex-wrap gap-2">

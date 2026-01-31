@@ -1,27 +1,14 @@
 /* ===================== OPTIMIZED TREE & CHIP SYSTEM ===================== */
 
-/* Core keyframes */
-@keyframes textGlitch {
-
-  0%,
-  100% {
-    transform: translateX(0);
-    clip-path: inset(0);
+@keyframes scanLine {
+  from {
+    opacity: 0.3;
+    left: -100%;
   }
 
-  10% {
-    transform: translateX(-2px);
-    clip-path: inset(0 0 40% 0);
-  }
-
-  20% {
-    transform: translateX(1px);
-    clip-path: inset(40% 0 0 0);
-  }
-
-  30% {
-    transform: translateX(-1px);
-    clip-path: inset(20% 0 20% 0);
+  to {
+    opacity: 0;
+    left: 100%;
   }
 }
 
@@ -78,13 +65,10 @@
   width: 100%;
 }
 
-.tree-node-item:hover span:last-of-type {
-  animation: textGlitch 0.6s ease;
+.tree-node-item:hover .scan-line {
+  animation: scanLine 0.5s ease forwards;
 }
 
-.tree-node-item:hover .scan-line {
-  animation: scanLine 0.3s ease forwards;
-}
 
 .tree-node-item:active {
   transform: scale(0.98);
@@ -277,40 +261,36 @@
 @keyframes skillHighlight {
   0% {
     transform: scale(1);
-    filter: brightness(1);
-  }
-
-  50% {
-    transform: scale(1.05);
-    filter: brightness(1.2);
   }
 
   100% {
     transform: scale(1.02);
-    filter: brightness(1.1);
   }
 }
 
 .highlight-skill {
   background-color: var(--color-nier-accent, #d4af37) !important;
-  color: var(--color-nier-text-dark, #3e3a35) !important;
+  color: #3e3a35 !important;
   border-color: var(--color-nier-accent) !important;
-  animation: skillHighlight 0.4s ease forwards;
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+  font-weight: bold;
 }
 
 .glitch-active {
-  animation: textGlitch 0.3s infinite;
+  background-color: #3e3a35 !important;
   border-color: var(--color-nier-accent) !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.glitch-active .text-nier-dark {
-  color: var(--color-nier-accent) !important;
+.glitch-active .text-nier-mid,
+.glitch-active .text-nier-dark,
+.glitch-active .detail-label {
+  color: var(--color-nier-light, #dad4bb) !important;
+  opacity: 1 !important;
 }
 
 .animate-scan {
-  animation: scanLine 2s infinite linear !important;
-  opacity: 1 !important;
+  animation: scanLine 3s infinite linear !important;
+  opacity: 0.2 !important;
 }
 
 .chip-container {
