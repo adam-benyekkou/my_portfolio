@@ -44,6 +44,46 @@
     }
   },
   {
+    "id": "cavydev-blog",
+    "title": "CAVYDEV_BLOG.EXE",
+    "status": "[CONTINUOUS_BROADCAST]",
+    "classification": "Technical Knowledge Broadcast",
+    "objective": "Centralized repository for technical insights and engineering philosophy",
+    "statusDescription": "LIVE | CONTINUOUS_BROADCAST",
+    "techStack": [
+      "TRAEFIK",
+      "WORDPRESS",
+      "DOCKER",
+      "PHP",
+      "MARIADB",
+      "SMTP"
+    ],
+    "demoUrl": "https://cavydev.com/",
+    "codeUrl": "",
+    "isRedacted": false,
+    "caseStudy": {
+      "title": "CAVYDEV_BLOG.EXE",
+      "sections": [
+        {
+          "title": "SYSTEM_OVERVIEW",
+          "content": "A self-hosted technical blog serving as a digital grimoire for engineering knowledge. Cavydev facilitates the broadcast of specialized insights across multiple domains, from low-level development to high-level cloud orchestration."
+        },
+        {
+          "title": "TECHNICAL_STACK",
+          "content": "The platform is built on a containerized WordPress environment, orchestrated by Traefik for secure edge routing. It utilizes a modular Docker-compose architecture, ensuring easy maintenance and scalability of the CMS and its associated database."
+        },
+        {
+          "title": "CORE_SUBJECTS",
+          "content": "• <strong>Dev & DevOps:</strong> Implementation strategies and architectural patterns.<br>• <strong>Support Engineering:</strong> Troubleshooting methodologies and client-focused solutions.<br>• <strong>Security:</strong> Hardening guides and vulnerability analysis.<br>• <strong>Philosophy:</strong> Ramblings on the intersection of technology and human logic."
+        },
+        {
+          "title": "SYSTEM_SPECIFICATIONS",
+          "content": "• Core: <strong>WordPress / PHP-FPM</strong><br>• Edge: <strong>Traefik (Automated SSL)</strong><br>• Database: <strong>MariaDB</strong><br>• Communications: <strong>Dedicated SMTP Relay</strong><br>• Host: <strong>Self-hosted Infrastructure</strong>"
+        }
+      ]
+    }
+  },
+  {
     "id": "greenroots",
     "title": "GREENROOTS_ECOM.EXE",
     "status": "[OPERATIONAL]",

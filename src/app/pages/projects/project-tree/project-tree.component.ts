@@ -10,7 +10,8 @@ export class ProjectTreeComponent {
   directoryLines = signal([
     'EXECUTE//DIRECTORY/',
     '├── INFRASTRUCTURE/',
-    '│   └── homelab_infra.exe',
+    '│   ├── homelab_infra.exe',
+    '│   └── cavydev_blog.exe',
     '├── WEB_APPLICATIONS/',
     '│   ├── greenroots_ecom.exe',
     '│   ├── portfolio_system.exe',
