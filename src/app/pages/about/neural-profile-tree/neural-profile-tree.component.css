@@ -273,3 +273,51 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: inline-block;
 }
+
+@keyframes skillHighlight {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+  }
+
+  100% {
+    transform: scale(1.02);
+    filter: brightness(1.1);
+  }
+}
+
+.highlight-skill {
+  background-color: var(--color-nier-accent, #d4af37) !important;
+  color: var(--color-nier-text-dark, #3e3a35) !important;
+  border-color: var(--color-nier-accent) !important;
+  animation: skillHighlight 0.4s ease forwards;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.glitch-active {
+  animation: textGlitch 0.3s infinite;
+  border-color: var(--color-nier-accent) !important;
+}
+
+.glitch-active .text-nier-dark {
+  color: var(--color-nier-accent) !important;
+}
+
+.animate-scan {
+  animation: scanLine 2s infinite linear !important;
+  opacity: 1 !important;
+}
+
+.chip-container {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.chip-container.opacity-60:hover {
+  opacity: 0.8;
+}

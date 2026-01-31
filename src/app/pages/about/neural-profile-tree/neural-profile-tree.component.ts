@@ -59,6 +59,15 @@ export class NeuralProfileTreeComponent {
     },
   };
 
+  // Default data for each cell when no specific node is hovered/selected
+  public readonly CELL_DATA = {
+    1: { title: 'Frontend Development', skills: ['React', 'Angular', 'Tailwind', 'Three.js'] },
+    2: { title: 'Backend Development', skills: ['Node.js', 'PHP', 'Python', 'Java'] },
+    3: { title: 'Orchestration & CI/CD', skills: ['Docker', 'GitHub Actions', 'Terraform', 'Ansible'] },
+    4: { title: 'Security & Data', skills: ['Prometheus', 'Grafana', 'PostgreSQL', 'MongoDB'] }
+  };
+
+
   // Internal tree state and interaction signals
   private treeState = signal<NeuralProfileNode[]>([]);
   public hoveredNodeId = signal<string | null>(null);
@@ -281,11 +290,14 @@ export class NeuralProfileTreeComponent {
 
     if (targetId) {
       const node = findNode(nodes, targetId);
-      if (node?.linkedCell === cellId) return 'selected';
+      if (node?.linkedCell === cellId) {
+        return hoveredId ? 'hovered' : 'selected';
+      }
     }
 
     return 'normal';
   }
+
 
   private updateNodeInTree(
     nodes: NeuralProfileNode[],
