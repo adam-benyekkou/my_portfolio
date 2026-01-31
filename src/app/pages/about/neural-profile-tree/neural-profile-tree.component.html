@@ -3,10 +3,12 @@
   <div
     class="hidden md:block bg-nier-bg border-2 border-nier-border text-nier-dark flex-1 font-terminal text-sm md:text-base lg:text-lg leading-relaxed p-4 md:p-6 h-auto">
     @for (node of treeData(); track node.id) {
-    <div class="tree-node-item cursor-pointer flex items-center group py-0.5"
+    <div
+      class="tree-node-item cursor-pointer flex items-center group py-0.5 outline-none focus:ring-1 focus:ring-nier-accent/50"
       [class.selected-node]="selectedNodeId() === node.id" [class.hovered-node]="hoveredNodeId() === node.id"
-      [style.padding-left]="getIndentPadding(node.level)" (click)="selectNode(node)" (mouseenter)="hoverNode(node)"
-      (mouseleave)="clearHover()">
+      [style.padding-left]="getIndentPadding(node.level)" (click)="selectNode(node)" (keydown.enter)="selectNode(node)"
+      (keydown.space)="$event.preventDefault(); selectNode(node)" (mouseenter)="hoverNode(node)"
+      (mouseleave)="clearHover()" role="button" [attr.aria-selected]="selectedNodeId() === node.id" tabindex="0">
 
       <!-- Dynamic Tree Lines -->
       <span class="mr-2 opacity-60 font-mono text-xs md:text-sm lg:text-base">
@@ -21,8 +23,12 @@
       <!-- Folder/Leaf Icon -->
       <span class="mr-2 opacity-70">
         @if (node.hasChildren) {
-        <span class="text-xs transition-transform duration-200 inline-block" [class.rotate-90]="node.isExpanded"
-          (click)="$event.stopPropagation(); toggleExpand(node)">▶</span>
+        <span
+          class="text-xs transition-transform duration-200 inline-block focus:outline-none focus:ring-1 focus:ring-nier-accent"
+          [class.rotate-90]="node.isExpanded" (click)="$event.stopPropagation(); toggleExpand(node)"
+          (keydown.enter)="$event.stopPropagation(); toggleExpand(node)"
+          (keydown.space)="$event.preventDefault(); $event.stopPropagation(); toggleExpand(node)" role="button"
+          [attr.aria-expanded]="node.isExpanded" tabindex="0">▶</span>
         } @else {
         <span class="text-[10px] opacity-40">■</span>
         }
