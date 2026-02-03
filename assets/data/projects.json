@@ -130,6 +130,46 @@
     }
   },
   {
+    "id": "mobility-web",
+    "title": "MOBILITY_WEB.EXE",
+    "status": "[OPERATIONAL]",
+    "classification": "Transportation Data Visualization",
+    "objective": "Democratize access to complex mobility simulations",
+    "statusDescription": "LIVE | PRE_BAKED_DATA",
+    "techStack": [
+      "PYTHON",
+      "DASH",
+      "DOCKER",
+      "PYDECK",
+      "GITHUB_ACTIONS",
+      "TRAEFIK"
+    ],
+    "demoUrl": "https://mobility.cavydev.com/",
+    "codeUrl": "https://github.com/adam-benyekkou/mobility-web",
+    "isRedacted": false,
+    "caseStudy": {
+      "title": "MOBILITY_WEB.EXE",
+      "sections": [
+        {
+          "title": "PROJECT_OVERVIEW",
+          "content": "A web-based frontend for the Mobility Python package, developed during an internship at AREP. It enables non-technical users (AMOA, Urban Planners) to visualize mobility dynamics, generate transport zones, and analyze modal splits without writing code."
+        },
+        {
+          "title": "TECHNICAL_ARCHITECTURE",
+          "content": "Wraps the scientific capabilities of the 'mobility' library into a modern web experience. Built with <strong>Dash</strong> (Python framework) for the application layer and <strong>PyDeck</strong> (Deck.gl) for high-performance geospatial rendering. The engine uses discrete choice modeling to evaluate destination and mode decisions."
+        },
+        {
+          "title": "DATA_STRATEGY",
+          "content": "The core engine requires significant resources. For this hosted demonstration, data is <strong>randomly sampled and pre-baked</strong> into .gpkg files to ensure stability and instant loading on containerized infrastructure, while retaining the capability to run real simulations on appropriate hardware."
+        },
+        {
+          "title": "OPERATIONAL_METRICS",
+          "content": "• Stack: <strong>Python / Dash</strong><br>• Mapping: <strong>PyDeck / Deck.gl</strong><br>• Infrastructure: <strong>Docker (Micromamba)</strong><br>• CI/CD: <strong>GitHub Actions</strong>"
+        }
+      ]
+    }
+  },
+  {
     "id": "portfolio",
     "title": "PORTFOLIO_SYSTEM.EXE",
     "status": "[OPERATIONAL]",
