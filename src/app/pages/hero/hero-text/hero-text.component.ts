@@ -5,6 +5,7 @@ import {
   PLATFORM_ID,
   ChangeDetectorRef,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -14,6 +15,7 @@ import { isPlatformBrowser } from '@angular/common';
   imports: [],
   templateUrl: './hero-text.component.html',
   styleUrl: './hero-text.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroTextComponent implements OnInit, OnDestroy {
   displayText = '';

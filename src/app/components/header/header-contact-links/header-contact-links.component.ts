@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HeaderSwitchThemeButtonComponent } from './header-switch-theme-button/header-switch-theme-button.component';
 
 @Component({
@@ -6,6 +6,7 @@ import { HeaderSwitchThemeButtonComponent } from './header-switch-theme-button/h
   imports: [HeaderSwitchThemeButtonComponent],
   templateUrl: './header-contact-links.component.html',
   styleUrl: './header-contact-links.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderContactLinksComponent implements OnInit {
   isDarkMode = false;

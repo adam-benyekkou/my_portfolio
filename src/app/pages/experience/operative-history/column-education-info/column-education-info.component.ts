@@ -1,4 +1,4 @@
-import { Component, inject, computed, OnInit } from '@angular/core';
+import { Component, inject, computed, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DetailBlockComponent } from '../shared/detail-block/detail-block.component';
 import { InfoCardComponent } from '../shared/info-card/info-card.component';
 import { TechStackComponent } from '../tech-stack/tech-stack.component';
@@ -9,6 +9,7 @@ import { DataService } from '../../../../shared/services/data.service';
   imports: [DetailBlockComponent, InfoCardComponent, TechStackComponent],
   templateUrl: './column-education-info.component.html',
   styleUrl: './column-education-info.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ColumnEducationInfoComponent implements OnInit {
   readonly dataService = inject(DataService);

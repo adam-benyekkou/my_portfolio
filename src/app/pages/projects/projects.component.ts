@@ -1,5 +1,5 @@
 // projects.component.ts
-import { Component, signal, OnInit, inject } from '@angular/core';
+import { Component, signal, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { SectionTitleComponent } from '../../components/section-title/section-title.component';
 import { type Project } from '../../shared/models/project.model';
 import { ProjectTreeComponent } from './project-tree/project-tree.component';
@@ -21,6 +21,7 @@ import { DataService } from '../../shared/services/data.service';
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsComponent implements OnInit {
   private readonly dataService = inject(DataService);

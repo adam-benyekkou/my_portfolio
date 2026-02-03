@@ -5,6 +5,7 @@ import {
   OnDestroy,
   ElementRef,
   ViewChild,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 @Component({
@@ -12,6 +13,7 @@ import {
   imports: [],
   templateUrl: './section-title.component.html',
   styleUrl: './section-title.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectionTitleComponent implements OnInit, OnDestroy {
   @ViewChild('mainText', { static: true })

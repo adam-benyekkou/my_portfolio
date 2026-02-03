@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -7,6 +7,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './nav-button.html',
   styleUrl: './nav-button.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavButtonComponent {
   label = input<string>('label');

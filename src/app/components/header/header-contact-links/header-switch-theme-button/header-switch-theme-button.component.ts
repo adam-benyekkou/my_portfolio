@@ -1,10 +1,11 @@
 // header-switch-theme-nav-button.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-header-switch-theme-button',
   templateUrl: './header-switch-theme-button.component.html',
   styleUrls: ['./header-switch-theme-button.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderSwitchThemeButtonComponent implements OnInit {
   isDarkMode = false;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { HoloVideoContainerComponent } from '../../components/holo-video-container/holo-video-container.component';
 import { HeroTextComponent } from './hero-text/hero-text.component';
 
@@ -7,5 +7,6 @@ import { HeroTextComponent } from './hero-text/hero-text.component';
   imports: [HoloVideoContainerComponent, HeroTextComponent],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeroComponent {}
+export class HeroComponent { }

@@ -10,6 +10,7 @@ import {
   HostListener,
   NgZone,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as THREE from 'three';
@@ -19,6 +20,7 @@ import * as THREE from 'three';
   imports: [CommonModule],
   templateUrl: './holo-video-container.component.html',
   styleUrl: './holo-video-container.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HoloVideoContainerComponent implements OnInit, OnDestroy {
   @ViewChild('canvas', { static: true })

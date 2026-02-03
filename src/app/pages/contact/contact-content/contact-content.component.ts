@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { InfoPanelComponent } from './info-panel/info-panel.component';
 import { LinkCardComponent } from './link-card/link-card.component';
 
@@ -7,5 +7,6 @@ import { LinkCardComponent } from './link-card/link-card.component';
   imports: [InfoPanelComponent, LinkCardComponent],
   templateUrl: './contact-content.component.html',
   styleUrl: './contact-content.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContactContentComponent {}
+export class ContactContentComponent { }

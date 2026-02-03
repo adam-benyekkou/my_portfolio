@@ -135,7 +135,7 @@
     "status": "[OPERATIONAL]",
     "classification": "Transportation Data Visualization",
     "objective": "Democratize access to complex mobility simulations",
-    "statusDescription": "LIVE | PRE_BAKED_DATA",
+    "statusDescription": "LIVE | GEOSPATIAL_ENGINE",
     "techStack": [
       "PYTHON",
       "DASH",

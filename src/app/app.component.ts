@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import {
   RouterOutlet,
   Router,
@@ -23,6 +23,7 @@ import { LoadingService } from './shared/services/loading.service';
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   title = 'Adam Benyekkou Portfolio';

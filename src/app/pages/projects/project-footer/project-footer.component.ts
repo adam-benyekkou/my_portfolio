@@ -1,5 +1,5 @@
 // project-footer.component.ts
-import { Component, input, computed } from '@angular/core';
+import { Component, input, computed, ChangeDetectionStrategy } from '@angular/core';
 import { type Project } from '../../../shared/models/project.model';
 
 @Component({
@@ -7,6 +7,7 @@ import { type Project } from '../../../shared/models/project.model';
   standalone: true,
   templateUrl: './project-footer.component.html',
   styleUrl: './project-footer.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectFooterComponent {
   // Signal input for projects array

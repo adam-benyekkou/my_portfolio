@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { SectionTitleComponent } from '../../components/section-title/section-title.component';
 import { HoloVideoContainerComponent } from '../../components/holo-video-container/holo-video-container.component';
 import { NeuralProfileTreeComponent } from './neural-profile-tree/neural-profile-tree.component';
@@ -12,5 +12,6 @@ import { NeuralProfileTreeComponent } from './neural-profile-tree/neural-profile
   ],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AboutComponent {}
+export class AboutComponent { }

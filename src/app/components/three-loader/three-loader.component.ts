@@ -6,6 +6,7 @@ import {
   ViewChild,
   inject,
   NgZone,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoadingService } from '../../shared/services/loading.service';
@@ -24,6 +25,7 @@ import type {
   imports: [CommonModule],
   templateUrl: './three-loader.component.html',
   styleUrl: './three-loader.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThreeLoaderComponent implements OnInit, OnDestroy {
   @ViewChild('loaderCanvas', { static: true })

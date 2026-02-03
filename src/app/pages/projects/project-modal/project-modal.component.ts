@@ -1,4 +1,4 @@
-import { Component, effect, input, output } from '@angular/core';
+import { Component, effect, input, output, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { type Project } from '../../../shared/models/project.model';
 
@@ -7,6 +7,7 @@ import { type Project } from '../../../shared/models/project.model';
   imports: [CommonModule],
   templateUrl: './project-modal.component.html',
   styleUrl: './project-modal.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectModalComponent {
   project = input<Project | null>(null);

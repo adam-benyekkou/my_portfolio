@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { NavButtonComponent } from '../../../components/button/nav-button.component';
 
 @Component({
@@ -6,6 +6,7 @@ import { NavButtonComponent } from '../../../components/button/nav-button.compon
   imports: [NavButtonComponent],
   templateUrl: './header-nav-links.component.html',
   styleUrl: './header-nav-links.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderNavLinksComponent {
   onClick() {

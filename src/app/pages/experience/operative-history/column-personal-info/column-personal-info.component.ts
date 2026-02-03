@@ -1,4 +1,4 @@
-import { Component, signal, inject, OnInit } from '@angular/core';
+import { Component, signal, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { InfoCardComponent } from '../shared/info-card/info-card.component';
 import { TraitItemComponent } from './trait-item/trait-item.component';
 import { DataService } from '../../../../shared/services/data.service';
@@ -8,6 +8,7 @@ import { DataService } from '../../../../shared/services/data.service';
   imports: [InfoCardComponent, TraitItemComponent],
   templateUrl: './column-personal-info.component.html',
   styleUrl: './column-personal-info.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ColumnPersonalInfoComponent implements OnInit {
   readonly dataService = inject(DataService);

@@ -1,10 +1,11 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-project-tree',
   imports: [],
   templateUrl: './project-tree.component.html',
   styleUrl: './project-tree.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectTreeComponent {
   directoryLines = signal([

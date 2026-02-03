@@ -7,6 +7,7 @@ import {
   OnInit,
   ElementRef,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { type Project } from '../../../shared/models/project.model';
@@ -15,6 +16,7 @@ import { type Project } from '../../../shared/models/project.model';
   selector: 'app-project-card',
   templateUrl: './project-card.component.html',
   styleUrl: './project-card.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectCardComponent implements OnInit {
   // Angular 19 signals

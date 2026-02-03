@@ -3,6 +3,7 @@ import {
   signal,
   computed,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { type NeuralProfileNode } from '../../../shared/models/about.model';
@@ -14,6 +15,7 @@ import { DataService } from '../../../shared/services/data.service';
   imports: [CommonModule],
   templateUrl: './neural-profile-tree.component.html',
   styleUrl: './neural-profile-tree.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NeuralProfileTreeComponent {
   private readonly dataService = inject(DataService);
