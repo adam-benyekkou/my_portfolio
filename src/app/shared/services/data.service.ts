@@ -71,7 +71,7 @@ export class DataService {
   private async fetchProjects(): Promise<Project[]> {
     try {
       return await firstValueFrom(
-        this.http.get<Project[]>('data/projects.json'),
+        this.http.get<Project[]>(`data/projects.json?v=${new Date().getTime()}`),
       );
     } catch (error) {
       console.error('Error fetching projects:', error);
