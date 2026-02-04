@@ -30,7 +30,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^21.1.1",
     "@angular/cli": "^21.1.2",
-    "@angular/compiler-cli": "^21.1.1",
+    "@angular/compiler-cli": "^21.1.2",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/jasmine": "~6.0.0",
     "@types/jest": "^29.5.14",
