@@ -50,14 +50,7 @@
     "classification": "Technical Knowledge Broadcast",
     "objective": "Centralized repository for technical insights and engineering philosophy",
     "statusDescription": "LIVE | CONTINUOUS_BROADCAST",
-    "techStack": [
-      "TRAEFIK",
-      "WORDPRESS",
-      "DOCKER",
-      "PHP",
-      "MARIADB",
-      "SMTP"
-    ],
+    "techStack": ["TRAEFIK", "WORDPRESS", "DOCKER", "PHP", "MARIADB", "SMTP"],
     "demoUrl": "https://cavydev.com/",
     "codeUrl": "",
     "isRedacted": false,
@@ -79,6 +72,51 @@
         {
           "title": "SYSTEM_SPECIFICATIONS",
           "content": "• Core: <strong>WordPress / PHP-FPM</strong><br>• Edge: <strong>Traefik (Automated SSL)</strong><br>• Database: <strong>MariaDB</strong><br>• Communications: <strong>Dedicated SMTP Relay</strong><br>• Host: <strong>Self-hosted Infrastructure</strong>"
+        }
+      ]
+    }
+  },
+  {
+    "id": "sible",
+    "title": "SIBLE_ORCHESTRATOR.EXE",
+    "status": "[OPERATIONAL]",
+    "classification": "Lightweight Ansible Orchestrator",
+    "objective": "Sovereign Infrastructure Management for SREs and DevOps",
+    "statusDescription": "LIVE | REACTIVE_DASHBOARD",
+    "techStack": [
+      "PYTHON",
+      "FASTAPI",
+      "ANSIBLE",
+      "HTMX",
+      "DOCKER",
+      "WEBSOCKETS",
+      "SQLITE"
+    ],
+    "demoUrl": "https://adam-benyekkou.github.io/Sible/",
+    "codeUrl": "https://github.com/adam-benyekkou/Sible",
+    "isRedacted": false,
+    "caseStudy": {
+      "title": "SIBLE_ORCHESTRATOR.EXE",
+      "sections": [
+        {
+          "title": "PROJECT_OVERVIEW",
+          "content": "A modern, reactive, no-bloat UI for Ansible designed to bridge the gap between complex enterprise towers and raw CLI usage. Sible connects to your inventory via SSH, runs your automation, and streams the logs directly to your browser in real-time."
+        },
+        {
+          "title": "CORE_VALUE",
+          "content": "<strong>Sovereign Infrastructure Management:</strong> Execute Ansible playbooks on your servers instantly without complex agents. It features a built-in secure SSH terminal, mobile-optimized UI, and a template library for bootstrapping new playbooks."
+        },
+        {
+          "title": "TECHNICAL_ARCHITECTURE",
+          "content": "Built on a <strong>'Zero-Bloat' philosophy</strong>, avoiding heavy frontend frameworks. <br>• <strong>Backend:</strong> Python 3.11, FastAPI, SQLModel (SQLite), Ansible Runner<br>• <strong>Frontend:</strong> Jinja2, HTMX, Alpine.js, PicoCSS<br>• <strong>Real-time:</strong> WebSockets, Server-Sent Events (SSE)"
+        },
+        {
+          "title": "SECURITY_&_GOVERNANCE",
+          "content": "• <strong>RBAC:</strong> Three-tier role system (Admin, Operator, Watcher).<br>• <strong>Secret Vault:</strong> AES-256 encrypted storage for sensitive variables.<br>• <strong>JIT Injection:</strong> Secrets are injected into Ansible processes at runtime and never persisted to disk."
+        },
+        {
+          "title": "OPERATIONAL_METRICS",
+          "content": "• Deployment: <strong>Docker Compose</strong><br>• Security: <strong>BCrypt & Fernet Encryption</strong><br>• License: <strong>MIT</strong><br>• Documentation: <strong>Comprehensive Guides Available</strong>"
         }
       ]
     }
