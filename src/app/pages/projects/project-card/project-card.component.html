@@ -1,8 +1,15 @@
 <div
   class="project-card border border-nier-border sm:border-2 bg-nier-bg relative overflow-hidden transition-all duration-300 group focus:outline-none"
-  [class.redacted]="project().isRedacted" [class.glitch-enabled]="!project().isRedacted" role="button" tabindex="0"
-  (click)="onCardClick()" (keydown.enter)="onCardClick()" (keydown.space)="onCardClick()" (mouseenter)="onHover()"
-  (mouseleave)="onLeave()">
+  [class.redacted]="project().isRedacted"
+  [class.glitch-enabled]="!project().isRedacted"
+  role="button"
+  tabindex="0"
+  (click)="onCardClick()"
+  (keydown.enter)="onCardClick()"
+  (keydown.space)="onCardClick()"
+  (mouseenter)="onHover()"
+  (mouseleave)="onLeave()"
+>
   <!-- Glitch overlay layers -->
   <div class="glitch-layer glitch-layer-1"></div>
   <div class="glitch-layer glitch-layer-2"></div>
@@ -10,146 +17,194 @@
 
   <!-- Static noise overlay for redacted cards -->
   @if (project().isRedacted) {
-  <div class="static-overlay"></div>
+    <div class="static-overlay"></div>
   }
 
   <!-- Regular Project Content -->
   @if (!project().isRedacted) {
-  <!-- Project Header -->
-  <div
-    class="project-header bg-nier-dark text-nier-light px-4 py-3 sm:px-5 sm:py-4 border-b border-nier-border sm:border-b-2 relative overflow-hidden">
-    <!-- Header glitch line -->
-    <div class="header-glitch-line"></div>
+    <!-- Project Header -->
+    <div
+      class="project-header bg-nier-dark text-nier-light px-4 py-3 sm:px-5 sm:py-4 border-b border-nier-border sm:border-b-2 relative overflow-hidden"
+    >
+      <!-- Header glitch line -->
+      <div class="header-glitch-line"></div>
 
-    <div class="project-status font-terminal-retro text-xs sm:text-sm mb-2 tracking-wider relative z-10"
-      [class]="statusClass()">
-      {{ project().status }}
-    </div>
-    <div class="project-title font-noto-jp text-lg sm:text-xl font-normal tracking-wider relative z-10">
-      {{ project().title }}
-    </div>
-  </div>
-
-  <!-- Project Details -->
-  <div class="project-body px-4 py-5 sm:px-5 sm:py-6 space-y-2 sm:space-y-3 relative">
-    <!-- Body scan line -->
-    <div class="body-scan-line"></div>
-
-    <div class="project-detail glitch-text">
-      <span class="detail-label text-xs sm:text-sm">CLASSIFICATION:</span>
-      <span class="detail-value text-xs sm:text-sm">{{
-        project().classification
-        }}</span>
-    </div>
-    <div class="project-detail glitch-text">
-      <span class="detail-label text-xs sm:text-sm">OBJECTIVE:</span>
-      <span class="detail-value text-xs sm:text-sm">{{
-        project().objective
-        }}</span>
-    </div>
-    <div class="project-detail glitch-text">
-      <span class="detail-label text-xs sm:text-sm">STATUS:</span>
-      <span class="detail-value text-xs sm:text-sm">{{
-        project().statusDescription
-        }}</span>
-    </div>
-
-    @if (project().techStack && project().techStack.length > 0) {
-    <div class="tech-stack pt-3 sm:pt-4 mt-3 sm:mt-4 border-t border-nier-border">
-      <div class="detail-label mb-2 sm:mb-3 text-xs sm:text-sm">
-        TECH_STACK:
+      <div
+        class="project-status font-terminal-retro text-xs sm:text-sm mb-2 tracking-wider relative z-10"
+        [class]="statusClass()"
+      >
+        {{ project().status }}
       </div>
-      <div class="tech-grid">
-        @for (tech of project().techStack; track tech; let i = $index) {
-        <span class="tech-item glitch-tech text-xs sm:text-sm" [style.animation-delay]="getTechItemDelay(i)">{{ tech
-          }}</span>
+      <div
+        class="project-title font-noto-jp text-lg sm:text-xl font-normal tracking-wider relative z-10"
+      >
+        {{ project().title }}
+      </div>
+    </div>
+
+    <!-- Project Details -->
+    <div
+      class="project-body px-4 py-5 sm:px-5 sm:py-6 space-y-2 sm:space-y-3 relative"
+    >
+      <!-- Body scan line -->
+      <div class="body-scan-line"></div>
+
+      <div class="project-detail glitch-text">
+        <span class="detail-label text-xs sm:text-sm">CLASSIFICATION:</span>
+        <span class="detail-value text-xs sm:text-sm">{{
+          project().classification
+        }}</span>
+      </div>
+      <div class="project-detail glitch-text">
+        <span class="detail-label text-xs sm:text-sm">OBJECTIVE:</span>
+        <span class="detail-value text-xs sm:text-sm">{{
+          project().objective
+        }}</span>
+      </div>
+      <div class="project-detail glitch-text">
+        <span class="detail-label text-xs sm:text-sm">STATUS:</span>
+        <span class="detail-value text-xs sm:text-sm">{{
+          project().statusDescription
+        }}</span>
+      </div>
+
+      @if (project().techStack && project().techStack.length > 0) {
+        <div
+          class="tech-stack pt-3 sm:pt-4 mt-3 sm:mt-4 border-t border-nier-border"
+        >
+          <div class="detail-label mb-2 sm:mb-3 text-xs sm:text-sm">
+            TECH_STACK:
+          </div>
+          <div class="tech-grid">
+            @for (tech of project().techStack; track tech; let i = $index) {
+              <span
+                class="tech-item glitch-tech text-xs sm:text-sm"
+                [style.animation-delay]="getTechItemDelay(i)"
+                >{{ tech }}</span
+              >
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Action Buttons -->
+    @if (project().demoUrl || project().codeUrl) {
+      <div
+        class="access-section relative flex flex-col sm:flex-row gap-3 sm:gap-2"
+      >
+        <!-- Button area glitch -->
+        <div class="button-glitch-overlay"></div>
+
+        @if (project().demoUrl) {
+          <button
+            class="access-btn glitch-button flex-1 text-sm"
+            (click)="openLink($event, project().demoUrl!)"
+            (mouseenter)="triggerButtonGlitch($event)"
+          >
+            <span class="button-text">EXECUTE_DEMO</span>
+            <div class="button-glitch-layer"></div>
+          </button>
+        }
+        @if (project().docsUrl) {
+          <button
+            class="access-btn glitch-button flex-1 text-sm"
+            (click)="openLink($event, project().docsUrl!)"
+            (mouseenter)="triggerButtonGlitch($event)"
+          >
+            <span class="button-text">READ_DOCS</span>
+            <div class="button-glitch-layer"></div>
+          </button>
+        }
+        @if (project().codeUrl) {
+          <button
+            class="access-btn glitch-button flex-1 text-sm"
+            (click)="openLink($event, project().codeUrl!)"
+            (mouseenter)="triggerButtonGlitch($event)"
+          >
+            <span class="button-text">ACCESS_CODE</span>
+            <div class="button-glitch-layer"></div>
+          </button>
         }
       </div>
+    }
+
+    <!-- Enhanced click indicator -->
+    <div class="click-indicator">
+      <span class="glitch-click-text text-xs sm:text-sm"
+        >CLICK_FOR_CASE_STUDY</span
+      >
     </div>
-    }
-  </div>
-
-  <!-- Action Buttons -->
-  @if (project().demoUrl || project().codeUrl) {
-  <div class="access-section relative flex flex-col sm:flex-row gap-3 sm:gap-2">
-    <!-- Button area glitch -->
-    <div class="button-glitch-overlay"></div>
-
-    @if (project().demoUrl) {
-    <button class="access-btn glitch-button flex-1 text-sm" (click)="openLink($event, project().demoUrl!)"
-      (mouseenter)="triggerButtonGlitch($event)">
-      <span class="button-text">EXECUTE_DEMO</span>
-      <div class="button-glitch-layer"></div>
-    </button>
-    }
-    @if (project().codeUrl) {
-    <button class="access-btn glitch-button flex-1 text-sm" (click)="openLink($event, project().codeUrl!)"
-      (mouseenter)="triggerButtonGlitch($event)">
-      <span class="button-text">ACCESS_CODE</span>
-      <div class="button-glitch-layer"></div>
-    </button>
-    }
-  </div>
-  }
-
-  <!-- Enhanced click indicator -->
-  <div class="click-indicator">
-    <span class="glitch-click-text text-xs sm:text-sm">CLICK_FOR_CASE_STUDY</span>
-  </div>
   }
 
   <!-- Redacted Project Content -->
   @if (project().isRedacted) {
-  <div class="redacted-background">
-    <div class="redacted-content">
-      <!-- Redacted Header -->
-      <div class="bg-nier-dark text-nier-light px-4 py-3 sm:px-5 sm:py-4 border-b border-nier-border sm:border-b-2">
-        <div class="font-terminal-retro text-xs sm:text-sm mb-2 redacted-status">
-          [████████████]
-        </div>
-        <div class="font-noto-jp text-lg sm:text-xl redacted-title">
-          ████████████.EXE
-        </div>
-      </div>
-
-      <!-- Redacted Details -->
-      <div class="px-4 py-5 sm:px-5 sm:py-6 space-y-2 sm:space-y-3">
-        <div class="project-detail">
-          <span class="detail-label text-xs sm:text-sm">████████████:</span>
-          <span class="detail-value text-xs sm:text-sm">████████████████████</span>
-        </div>
-        <div class="project-detail">
-          <span class="detail-label text-xs sm:text-sm">█████████:</span>
-          <span class="detail-value text-xs sm:text-sm">████████████████████████████</span>
-        </div>
-        <div class="project-detail">
-          <span class="detail-label text-xs sm:text-sm">██████:</span>
-          <span class="detail-value text-xs sm:text-sm">████████████████</span>
-        </div>
-
-        <div class="tech-stack pt-3 sm:pt-4 mt-3 sm:mt-4 border-t border-nier-border">
-          <div class="detail-label mb-2 sm:mb-3 text-xs sm:text-sm">
-            ██████████:
+    <div class="redacted-background">
+      <div class="redacted-content">
+        <!-- Redacted Header -->
+        <div
+          class="bg-nier-dark text-nier-light px-4 py-3 sm:px-5 sm:py-4 border-b border-nier-border sm:border-b-2"
+        >
+          <div
+            class="font-terminal-retro text-xs sm:text-sm mb-2 redacted-status"
+          >
+            [████████████]
           </div>
-          <div class="tech-grid">
-            @for (item of redactedTechItems(); track $index) {
-            <span class="tech-item redacted-tech text-xs sm:text-sm">████</span>
-            }
+          <div class="font-noto-jp text-lg sm:text-xl redacted-title">
+            ████████████.EXE
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Enhanced redacted overlay -->
-    <div class="redacted-overlay">
-      <div class="text-xl sm:text-2xl font-noto-jp tracking-wider glitch-redacted-text">
-        REDACTED
+        <!-- Redacted Details -->
+        <div class="px-4 py-5 sm:px-5 sm:py-6 space-y-2 sm:space-y-3">
+          <div class="project-detail">
+            <span class="detail-label text-xs sm:text-sm">████████████:</span>
+            <span class="detail-value text-xs sm:text-sm"
+              >████████████████████</span
+            >
+          </div>
+          <div class="project-detail">
+            <span class="detail-label text-xs sm:text-sm">█████████:</span>
+            <span class="detail-value text-xs sm:text-sm"
+              >████████████████████████████</span
+            >
+          </div>
+          <div class="project-detail">
+            <span class="detail-label text-xs sm:text-sm">██████:</span>
+            <span class="detail-value text-xs sm:text-sm"
+              >████████████████</span
+            >
+          </div>
+
+          <div
+            class="tech-stack pt-3 sm:pt-4 mt-3 sm:mt-4 border-t border-nier-border"
+          >
+            <div class="detail-label mb-2 sm:mb-3 text-xs sm:text-sm">
+              ██████████:
+            </div>
+            <div class="tech-grid">
+              @for (item of redactedTechItems(); track $index) {
+                <span class="tech-item redacted-tech text-xs sm:text-sm"
+                  >████</span
+                >
+              }
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="text-xs sm:text-sm mt-2 opacity-80">TO_BE_COMING</div>
-      <!-- Redacted warning lines -->
-      <div class="redacted-warning-lines"></div>
+
+      <!-- Enhanced redacted overlay -->
+      <div class="redacted-overlay">
+        <div
+          class="text-xl sm:text-2xl font-noto-jp tracking-wider glitch-redacted-text"
+        >
+          REDACTED
+        </div>
+        <div class="text-xs sm:text-sm mt-2 opacity-80">TO_BE_COMING</div>
+        <!-- Redacted warning lines -->
+        <div class="redacted-warning-lines"></div>
+      </div>
     </div>
-  </div>
   }
 
   <!-- Corner accent for all cards -->

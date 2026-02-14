@@ -92,8 +92,9 @@
       "WEBSOCKETS",
       "SQLITE"
     ],
-    "demoUrl": "https://adam-benyekkou.github.io/Sible/",
+    "demoUrl": "",
     "codeUrl": "https://github.com/adam-benyekkou/Sible",
+    "docsUrl": "https://adam-benyekkou.github.io/Sible/",
     "isRedacted": false,
     "caseStudy": {
       "title": "SIBLE_ORCHESTRATOR.EXE",

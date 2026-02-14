@@ -8,6 +8,7 @@ interface Project {
   techStack: string[];
   demoUrl?: string;
   codeUrl?: string;
+  docsUrl?: string;
   isRedacted: boolean;
   caseStudy?: {
     title: string;
