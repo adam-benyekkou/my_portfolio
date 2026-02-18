@@ -116,6 +116,16 @@
             <div class="button-glitch-layer"></div>
           </button>
         }
+        @if (project().statusUrl) {
+          <button
+            class="access-btn glitch-button flex-1 text-sm"
+            (click)="openLink($event, project().statusUrl!)"
+            (mouseenter)="triggerButtonGlitch($event)"
+          >
+            <span class="button-text">CHECK_STATUS</span>
+            <div class="button-glitch-layer"></div>
+          </button>
+        }
         @if (project().codeUrl) {
           <button
             class="access-btn glitch-button flex-1 text-sm"

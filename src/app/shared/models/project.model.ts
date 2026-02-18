@@ -9,6 +9,7 @@ interface Project {
   demoUrl?: string;
   codeUrl?: string;
   docsUrl?: string;
+  statusUrl?: string;
   isRedacted: boolean;
   caseStudy?: {
     title: string;
