@@ -16,7 +16,7 @@
     ],
     "demoUrl": "",
     "codeUrl": "https://github.com/adam-benyekkou/my-homelab",
-    "statusUrl": "https://status.cavydev.com",
+    "statusUrl": "https://snapshots.raintank.io/dashboard/snapshot/nflSU4RwkKH3jz1oVpHgTlDnlIdEUEry?orgId=0&from=2026-02-18T08:54:50.653Z&to=2026-02-18T14:54:50.653Z&timezone=browser&var-host=$__all&var-container=$__all",
     "isRedacted": false,
     "caseStudy": {
       "title": "HOMELAB_INFRA.EXE",
