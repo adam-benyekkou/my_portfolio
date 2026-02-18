@@ -91,6 +91,51 @@
     }
   },
   {
+    "id": "whisp",
+    "title": "WHISP_SECRET.EXE",
+    "status": "[OPERATIONAL]",
+    "classification": "Zero-Knowledge Secret Sharing Platform",
+    "objective": "Sovereign, privacy-first ephemeral data exchange",
+    "statusDescription": "LIVE | ZERO_KNOWLEDGE",
+    "techStack": [
+      "PYTHON",
+      "FASTAPI",
+      "ALPINE_JS",
+      "TAILWIND",
+      "DOCKER",
+      "PLAYWRIGHT",
+      "SQLITE"
+    ],
+    "demoUrl": "https://whisp.cavydev.com/",
+    "codeUrl": "https://github.com/adam-benyekkou/Whisp",
+    "isRedacted": false,
+    "caseStudy": {
+      "title": "WHISP_SECRET.EXE",
+      "sections": [
+        {
+          "title": "SYSTEM_OVERVIEW",
+          "content": "A self-hosted, zero-knowledge secret sharing platform built with the PETAL Stack. Whisp ensures that secrets are encrypted in the browser, stored in RAM, and destroyed immediately upon access, providing a high-security channel for sensitive data exchange."
+        },
+        {
+          "title": "SECURITY_ARCHITECTURE",
+          "content": "Designed with a Zero-Trust philosophy. It implements <strong>Zero-Knowledge Encryption</strong> using the Web Crypto API (AES-GCM 256-bit). Decryption keys are passed via URL fragments and never touch the server. Payload storage is handled via <strong>tmpfs</strong>, ensuring data never hits physical disk."
+        },
+        {
+          "title": "DATA_LIFECYCLE",
+          "content": "Whisp enforces an ephemeral lifecycle for all data. Secrets are automatically nuked from memory after a single access or when the TTL expires. For file transfers, a double-blind key system ensures that even a full database dump yields no recoverable metadata."
+        },
+        {
+          "title": "QUALITY_ASSURANCE",
+          "content": "The platform maintains rigorous engineering standards. The automated test suite, powered by <strong>Playwright</strong>, verifies critical security invariants including zero-knowledge verification, destruction confirmation after access, and TTL background cleanup."
+        },
+        {
+          "title": "TECHNICAL_SPECIFICATIONS",
+          "content": "• Backend: <strong>Python / FastAPI (Async)</strong><br>• Frontend: <strong>Alpine.js / Tailwind CSS</strong><br>• Database: <strong>SQLite (Async)</strong><br>• Infrastructure: <strong>Docker (tmpfs storage)</strong><br>• Verification: <strong>Playwright E2E Testing</strong>"
+        }
+      ]
+    }
+  },
+  {
     "id": "greenroots",
     "title": "GREENROOTS_ECOM.EXE",
     "status": "[OPERATIONAL]",
