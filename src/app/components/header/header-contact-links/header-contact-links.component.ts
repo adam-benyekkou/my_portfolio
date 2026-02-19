@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, signal } from '@angular/core';
 import { HeaderSwitchThemeButtonComponent } from './header-switch-theme-button/header-switch-theme-button.component';
 
 @Component({
@@ -9,42 +9,47 @@ import { HeaderSwitchThemeButtonComponent } from './header-switch-theme-button/h
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderContactLinksComponent implements OnInit {
-  isDarkMode = false;
+  isDarkMode = signal(false);
 
 
   ngOnInit(): void {
     // Check initial theme on load
-    this.isDarkMode = this.getCurrentTheme() === 'dark';
+    const theme = this.getCurrentTheme();
+    this.isDarkMode.set(theme === 'dark');
+    
+    // Apply initial theme to body
+    this.applyTheme(theme);
   }
 
   /**
    * Toggle between light and dark themes
    */
   toggleTheme(): void {
-    this.isDarkMode = !this.isDarkMode;
+    const nextTheme = this.isDarkMode() ? 'light' : 'dark';
+    this.isDarkMode.set(nextTheme === 'dark');
+    this.applyTheme(nextTheme);
 
-    // Update body data attribute
-    document.body.setAttribute(
-      'data-theme',
-      this.isDarkMode ? 'dark' : 'light',
+    // Dispatch custom event for other components that might need to react
+    window.dispatchEvent(
+      new CustomEvent('themeChanged', {
+        detail: { theme: nextTheme },
+      }),
     );
+  }
+
+  private applyTheme(theme: string): void {
+    // Update body data attribute
+    document.body.setAttribute('data-theme', theme);
 
     // Add/remove dark class from body for :host-context
-    if (this.isDarkMode) {
+    if (theme === 'dark') {
       document.body.classList.add('dark');
     } else {
       document.body.classList.remove('dark');
     }
 
     // Store preference in localStorage
-    localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
-
-    // Dispatch custom event for other components that might need to react
-    window.dispatchEvent(
-      new CustomEvent('themeChanged', {
-        detail: { theme: this.isDarkMode ? 'dark' : 'light' },
-      }),
-    );
+    localStorage.setItem('theme', theme);
   }
 
   /**

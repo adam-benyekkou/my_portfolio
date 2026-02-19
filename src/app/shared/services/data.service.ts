@@ -82,7 +82,7 @@ export class DataService {
   private async fetchSkills(): Promise<NeuralProfileNode[]> {
     try {
       const result = await firstValueFrom(
-        this.http.get<NeuralProfileNode>(`data/skilltree.json?v=${new Date().getTime()}`),
+        this.http.get<NeuralProfileNode>('data/skilltree.json'),
       );
       console.log('Fetched skills:', result);
       return [result];
@@ -95,7 +95,7 @@ export class DataService {
   private async fetchEducations(): Promise<Experience[]> {
     try {
       const result = await firstValueFrom(
-        this.http.get<Experience>(`data/education.json?v=${new Date().getTime()}`),
+        this.http.get<Experience>('data/education.json'),
       );
       console.log('Fetched education:', result);
       return [result];
@@ -108,7 +108,7 @@ export class DataService {
   private async fetchExperiences(): Promise<Experience[]> {
     try {
       const result = await firstValueFrom(
-        this.http.get<Experience[]>(`data/experiences.json?v=${new Date().getTime()}`),
+        this.http.get<Experience[]>('data/experiences.json'),
       );
       console.log('Fetched experiences:', result);
       return result;
@@ -121,7 +121,7 @@ export class DataService {
   private async fetchTraits(): Promise<string[]> {
     try {
       const result = await firstValueFrom(
-        this.http.get<string[]>(`data/traits.json?v=${new Date().getTime()}`),
+        this.http.get<string[]>('data/traits.json'),
       );
       console.log('Fetched traits:', result);
       return result;
