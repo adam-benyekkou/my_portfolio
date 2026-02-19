@@ -1,5 +1,23 @@
 [
   {
+    "id": "systems-ops-engineer",
+    "title": "SYSTEMS_OPS_ENGINEER.EXE",
+    "classification": "Systems & Ops Engineer",
+    "objective": "Leading independent R&D initiatives for the Cavy Dev ecosystem, focusing on sovereign infrastructure, GitOps orchestration, and privacy-preserving ephemeral systems. Architecting robust, containerized environments managed through automated pipelines and Infrastructure as Code.",
+    "timeline": "Cavy Dev | November 2025 - Present",
+    "techStack": [
+      "DOCKER",
+      "KUBERNETES",
+      "ANSIBLE",
+      "ARGOCD",
+      "PYTHON",
+      "FASTAPI",
+      "LINUX"
+    ],
+    "status": "current",
+    "statusLabel": "ACTIVE | INDEPENDENT R&D"
+  },
+  {
     "id": "fullstack-engineer-intern",
     "title": "FULL_STACK_ENGINEER.EXE",
     "classification": "Full-Stack Software Engineer (Python)",
