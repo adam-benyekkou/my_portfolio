@@ -91,6 +91,51 @@
     }
   },
   {
+  {
+    "id": "dredge",
+    "title": "DREDGE_FINOPS.EXE",
+    "status": "[OPERATIONAL]",
+    "classification": "Docker FinOps & Lifecycle Management Tool",
+    "objective": "Bring clarity to Docker infrastructure costs and optimize image lifecycles across multi-registries",
+    "statusDescription": "LIVE | FINOPS_ENGINE",
+    "techStack": [
+      "PYTHON",
+      "FASTAPI",
+      "HTMX",
+      "DOCKER",
+      "SQLITE",
+      "JWT"
+    ],
+    "demoUrl": "https://dredge-demo.cavydev.com/",
+    "codeUrl": "https://github.com/adam-benyekkou/Dredge",
+    "docsUrl": "https://adam-benyekkou.github.io/Dredge/guide/introduction.html",
+    "isRedacted": false,
+    "caseStudy": {
+      "title": "DREDGE_FINOPS.EXE",
+      "sections": [
+        {
+          "title": "SYSTEM_OVERVIEW",
+          "content": "A powerful, nautical-themed FinOps and lifecycle management platform for Docker images. Named after the maritime process of clearing sediment, Dredge helps DevOps teams identify unused images, optimize storage, and track cloud registry expenses before they become 'silent bill creep.'"
+        },
+        {
+          "title": "CORE_CAPABILITIES",
+          "content": "• <strong>Visibility:</strong> Real-time cost tracking across multi-registries (Docker Hub, AWS ECR, GHCR).<br>• <strong>Optimization:</strong> Automated cleanup policies, bloat detection, and efficiency scoring.<br>• <strong>Safety:</strong> Quarantine-first workflow with preview modals and 24-hour grace periods."
+        },
+        {
+          "title": "FINOPS_ENGINE",
+          "content": "Provides a unified FinOps dashboard tracking waste, efficiency scores, and reclaimable space with lazy-loaded, high-performance views. Cost Trends visualize spending patterns with interactive line charts anchored to real costs. Smart Alerts notify via Slack/Discord when monthly budget thresholds are exceeded."
+        },
+        {
+          "title": "SECURITY_&_LIFECYCLE",
+          "content": "• <strong>Auth:</strong> JWT (python-jose) with PBKDF2-SHA256 hashing.<br>• <strong>Lifecycle Policies:</strong> Automated quarantine logic based on image age and count per repository.<br>• <strong>Mass Cleanup:</strong> Batch delete across multiple registries with asynchronous background processing."
+        },
+        {
+          "title": "TECHNICAL_SPECIFICATIONS",
+          "content": "• Backend: <strong>Python 3.11 / FastAPI / SQLModel / Docker SDK</strong><br>• Frontend: <strong>HTMX / Jinja2 / Deep Harbor CSS Theme</strong><br>• Infrastructure: <strong>Docker Compose / SQLite</strong><br>• Auth: <strong>JWT / PBKDF2-SHA256</strong>"
+        }
+      ]
+    }
+  },
     "id": "whisp",
     "title": "WHISP_SECRET.EXE",
     "status": "[OPERATIONAL]",

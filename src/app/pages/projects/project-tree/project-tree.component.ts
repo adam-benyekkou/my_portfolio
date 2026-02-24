@@ -12,6 +12,7 @@ export class ProjectTreeComponent {
     'EXECUTE//DIRECTORY/',
     '├── INFRASTRUCTURE/',
     '│   ├── homelab_infra.exe',
+    '│   ├── dredge_finops.exe',
     '│   ├── sible_orchestrator.exe',
     '│   └── cavydev_blog.exe',
     '├── WEB_APPLICATIONS/',
