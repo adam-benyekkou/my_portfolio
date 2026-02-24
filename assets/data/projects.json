@@ -91,7 +91,6 @@
     }
   },
   {
-  {
     "id": "dredge",
     "title": "DREDGE_FINOPS.EXE",
     "status": "[OPERATIONAL]",
@@ -136,6 +135,7 @@
       ]
     }
   },
+  {
     "id": "whisp",
     "title": "WHISP_SECRET.EXE",
     "status": "[OPERATIONAL]",
