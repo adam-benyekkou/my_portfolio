@@ -16,8 +16,8 @@ RUN npm run build -- --configuration production
 
 # Stage 2: Serve
 FROM nginx:alpine
-
-# Update packages to resolve security vulnerabilities (e.g. libpng)
+# Bust cache to ensure apk upgrade always fetches latest packages (set by CI)
+ARG BUILDDATE
 RUN apk update && apk upgrade --no-cache
 
 # Create a non-root user for nginx
