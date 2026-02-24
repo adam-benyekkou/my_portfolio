@@ -2,9 +2,9 @@ name: Deploy to VPS
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   lint:
@@ -48,9 +48,11 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/my-portfolio:latest
-          # Enable caching for faster builds
+          # Enable caching for faster builds (stage 1 npm install stays cached)
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          # Bust apk upgrade layer on every run to always get latest security patches
+          build-args: BUILDDATE=${{ github.run_id }}
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
@@ -80,14 +82,14 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
-          
+
           echo "Deploying to $SSH_USER@$SSH_HOST..."
           # 1. Create directory
           ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa "$SSH_USER@$SSH_HOST" "mkdir -p /opt/infrastructure/stacks/my-portfolio"
-          
+
           # 2. Copy docker-compose.yml
           scp -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa docker-compose.yml "$SSH_USER@$SSH_HOST:/opt/infrastructure/stacks/my-portfolio/docker-compose.yml"
-          
+
           # 3. Pull and Start
           ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa "$SSH_USER@$SSH_HOST" "
             cd /opt/infrastructure/stacks/my-portfolio &&
