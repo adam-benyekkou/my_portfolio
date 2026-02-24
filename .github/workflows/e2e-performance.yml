@@ -2,9 +2,9 @@ name: E2E and Performance
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   cypress-run:
